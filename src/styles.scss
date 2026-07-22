@@ -38,16 +38,13 @@ html, body {
 
 img { -webkit-user-drag: none; user-drag: none; }
 
-/* Le bureau : fond d'écran plein écran */
+/* Le bureau : fond d'écran plein écran.
+   L'image est appliquée en style inline dans app.ts (chemin résolu à
+   l'exécution) pour ne pas être traitée au build par Angular. */
 .desktop {
   position: fixed;
   inset: 0;
   background-color: #34537d;
-  background-image: url('wallpaper/wallpaper.jpg'); /* fallback */
-  background-image: image-set(
-    url('wallpaper/wallpaper.webp') type('image/webp'),
-    url('wallpaper/wallpaper.jpg') type('image/jpeg')
-  );
   background-size: cover;
   background-position: center;
 }
