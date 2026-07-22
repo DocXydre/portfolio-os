@@ -1,0 +1,61 @@
+/* =========================================================================
+   Portfolio OS — styles globaux & tokens
+   XP.css fournit le châssis des fenêtres et les contrôles.
+   Ici : les tokens de personnalisation + bureau + taskbar (non couverts par XP.css).
+   Tout ce qui est réglable vit dans :root pour éviter les valeurs en dur.
+   ========================================================================= */
+
+:root {
+  /* --- Identité (personnalisation, on s'éloigne du XP strict ici) --- */
+  --accent: #2f6fed;              /* bleu de marque, un peu plus moderne que le Luna */
+  --accent-deep: #1b3fa0;
+  --taskbar-h: 34px;
+  --radius: 8px;
+
+  /* --- Taskbar --- */
+  --taskbar-grad: linear-gradient(to bottom, #3f8cf3 0%, #2f6fed 8%, #245edb 40%, #1f52c4 88%, #1741a0 100%);
+  --start-grad: linear-gradient(to bottom, #5cb247 0%, #4a9c38 45%, #3c8031 55%, #2f6b26 100%);
+  --tray-bg: linear-gradient(to bottom, #1a8fd6 0%, #1373b8 100%);
+
+  /* --- Fenêtres --- */
+  --title-grad: linear-gradient(to bottom, #3f8cf3 0%, #2f6fed 45%, #245edb 55%, #1f52c4 100%);
+  --title-inactive: linear-gradient(to bottom, #9db9e8 0%, #8faede 100%);
+
+  --font: Tahoma, 'Segoe UI', Verdana, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font);
+  font-size: 12px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+img { -webkit-user-drag: none; user-drag: none; }
+
+/* Le bureau : fond d'écran plein écran */
+.desktop {
+  position: fixed;
+  inset: 0;
+  background-color: #34537d;
+  background-image: url('wallpaper/wallpaper.jpg'); /* fallback */
+  background-image: image-set(
+    url('wallpaper/wallpaper.webp') type('image/webp'),
+    url('wallpaper/wallpaper.jpg') type('image/jpeg')
+  );
+  background-size: cover;
+  background-position: center;
+}
+
+/* Scrollbars façon XP à l'intérieur des fenêtres */
+.win-body ::-webkit-scrollbar { width: 16px; height: 16px; }
+.win-body ::-webkit-scrollbar-track { background: #d4d0c8; }
+.win-body ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #efeae1, #c5c0b4);
+  border: 1px solid #7f7d73;
+}

@@ -1,0 +1,20 @@
+# Dependencies
+/node_modules
+
+# Build output
+/dist
+/out-tsc
+/.angular
+
+# IDE / OS
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+
+# Misc
+*.log
+npm-debug.log*
+
+# Image source haute résolution (20 Mo) — les versions optimisées sont dans public/wallpaper
+/fond-xp.jpg
