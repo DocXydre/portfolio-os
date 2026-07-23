@@ -10,6 +10,8 @@ import { AppWindow, WindowData, WindowType } from './models';
 let uid = 0;
 const nextId = () => `w${++uid}`;
 
+const TASKBAR = 34; // hauteur de la barre des tâches (doit matcher --taskbar-h)
+
 interface OpenOptions {
   type: WindowType;
   title: string;
@@ -36,6 +38,12 @@ export class WindowService {
   private topZ = 0;
   private readonly keyed = new Map<string, string>(); // key -> window id
 
+  constructor() {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', () => this.reclampAll(), { passive: true });
+    }
+  }
+
   open(opts: OpenOptions): string {
     // Déduplication : si une fenêtre avec cette clé existe, on la refocalise
     // et on lui transmet la nouvelle charge utile (ex. explorateur qui navigue).
@@ -51,22 +59,32 @@ export class WindowService {
     }
 
     const id = nextId();
-    const width = opts.width ?? 640;
-    const height = opts.height ?? 460;
+    const vw = this.vw();
+    const vh = this.vh();
+    const mobile = vw < 760;
+
+    // Taille bornée à l'écran (sinon une fenêtre déborde sur petit écran).
+    const width = Math.min(opts.width ?? 640, vw - 16);
+    const height = Math.min(opts.height ?? 460, vh - TASKBAR - 16);
+
     const count = this._windows().length;
     const offset = (count % 8) * 26; // cascade
+    // Position en cascade, mais toujours dans les limites de l'écran.
+    const x = Math.max(4, Math.min(90 + offset, vw - width - 8));
+    const y = Math.max(4, Math.min(70 + offset, vh - TASKBAR - height - 8));
 
     const win: AppWindow = {
       id,
       type: opts.type,
       title: opts.title,
       icon: opts.icon,
-      x: 90 + offset,
-      y: 70 + offset,
+      x,
+      y,
       width,
       height,
       minimized: false,
-      maximized: false,
+      // Sur mobile, on ouvre plein écran : plus lisible et impossible à perdre.
+      maximized: mobile,
       z: ++this.topZ,
       data: opts.data,
     };
@@ -105,11 +123,41 @@ export class WindowService {
   }
 
   move(id: string, x: number, y: number): void {
-    this.patch(id, { x, y });
+    const w = this.get(id);
+    if (!w) return;
+    const c = this.clampPos(x, y, w.width, w.height);
+    this.patch(id, c);
   }
 
   resize(id: string, width: number, height: number): void {
-    this.patch(id, { width, height });
+    const maxW = this.vw() - 16;
+    const maxH = this.vh() - TASKBAR - 16;
+    this.patch(id, { width: Math.min(width, maxW), height: Math.min(height, maxH) });
+  }
+
+  // Empêche une fenêtre de sortir de l'écran : le haut reste atteignable et
+  // une partie reste toujours visible horizontalement.
+  private clampPos(x: number, y: number, width: number, height: number): { x: number; y: number } {
+    const vw = this.vw();
+    const vh = this.vh();
+    const keep = 90; // px toujours visibles sur les côtés
+    const cx = Math.max(keep - width, Math.min(x, vw - keep));
+    const cy = Math.max(0, Math.min(y, vh - TASKBAR - 30));
+    return { x: cx, y: cy };
+  }
+
+  private vw(): number {
+    return typeof window !== 'undefined' ? window.innerWidth : 1280;
+  }
+  private vh(): number {
+    return typeof window !== 'undefined' ? window.innerHeight : 800;
+  }
+
+  // Repositionne les fenêtres restées hors cadre après un redimensionnement / rotation.
+  private reclampAll(): void {
+    this._windows.update((ws) =>
+      ws.map((w) => (w.maximized ? w : { ...w, ...this.clampPos(w.x, w.y, w.width, w.height) })),
+    );
   }
 
   /** Renomme une fenêtre (l'explorateur suit sa navigation). */
