@@ -4,6 +4,7 @@ import { Desktop } from './os/desktop';
 import { Taskbar } from './os/taskbar';
 import { WindowFrame } from './os/window-frame';
 import { Screensaver } from './os/screensaver';
+import { Boot } from './os/boot';
 import { Explorer } from './apps/explorer';
 import { ProjectViewer } from './apps/project-viewer';
 import { PdfViewer } from './apps/pdf-viewer';
@@ -15,7 +16,7 @@ import { PhotoViewer } from './apps/photo-viewer';
 @Component({
   selector: 'app-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [Desktop, Taskbar, WindowFrame, Explorer, ProjectViewer, PdfViewer, PhotoViewer, Screensaver],
+  imports: [Desktop, Taskbar, WindowFrame, Explorer, ProjectViewer, PdfViewer, PhotoViewer, Screensaver, Boot],
   template: `
     <div class="desktop" [style.background-image]="wallpaper" (pointerdown)="onDesktopClick($event)">
       <app-desktop />
@@ -63,6 +64,7 @@ import { PhotoViewer } from './apps/photo-viewer';
 
       <app-taskbar />
       <app-screensaver />
+      <app-boot />
     </div>
   `,
   styles: [`
