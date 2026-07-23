@@ -13,16 +13,15 @@ interface Photo {
   caption: string;
 }
 
-const PHOTOS: Photo[] = [
-  { id: 'ph-1', name: 'sanctuaire-japon.jpg', src: 'photos/photo-1.jpg', caption: 'Sanctuaire japonais à contre-jour' },
-  { id: 'ph-2', name: 'baie-panorama.jpg', src: 'photos/photo-2.jpg', caption: 'Panorama sur la baie' },
-  { id: 'ph-3', name: 'corbeau.jpg', src: 'photos/photo-3.jpg', caption: 'Corbeau sur un lampadaire' },
-  { id: 'ph-4', name: 'ruelle-ville.jpg', src: 'photos/photo-4.jpg', caption: 'Ruelle animée en ville' },
-  { id: 'ph-5', name: 'crique-turquoise.jpg', src: 'photos/photo-5.jpg', caption: 'Crique turquoise et pin parasol' },
-  { id: 'ph-6', name: 'street-art.jpg', src: 'photos/photo-6.jpg', caption: 'Mur de street art' },
-  { id: 'ph-7', name: 'lanternes-nuit.jpg', src: 'photos/photo-7.jpg', caption: 'Lanternes japonaises la nuit' },
-  { id: 'ph-8', name: 'rue-pont.jpg', src: 'photos/photo-8.jpg', caption: 'Rue et pont en ville' },
-];
+// Galerie générée : dépose une photo dans public/photos/ nommée photo-N.jpg
+// et ajuste PHOTO_COUNT. Rien d'autre à toucher.
+const PHOTO_COUNT = 34;
+const PHOTOS: Photo[] = Array.from({ length: PHOTO_COUNT }, (_, i) => ({
+  id: `ph-${i + 1}`,
+  name: `photo-${i + 1}.jpg`,
+  src: `photos/photo-${i + 1}.jpg`,
+  caption: '',
+}));
 
 const photoFile = (p: Photo): FsFile => ({
   kind: 'file',
