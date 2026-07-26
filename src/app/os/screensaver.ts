@@ -26,7 +26,10 @@ interface Bubble {
   vx: number;
   vy: number;
   hue: number;
+  popDelay?: number; // décalage avant l'éclatement (ms), pour un effet en vague
 }
+
+const POP_MS = 360; // durée de l'éclatement d'une bulle
 
 @Component({
   selector: 'app-screensaver',
@@ -59,12 +62,19 @@ export class Screensaver implements OnInit, OnDestroy {
   private raf = 0;
   private bubbles: Bubble[] = [];
   private removeResize?: () => void;
+  private bursting = false;
+  private burstStart = 0;
+  private viewW = 0;
   private readonly reduceMotion =
     typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   private readonly onActivity = (): void => {
     this.lastActivity = Date.now();
-    if (this.active()) this.stop();
+    // À la première activité, les bulles éclatent (en décalé) au lieu de couper net.
+    if (this.active() && !this.bursting) {
+      if (this.reduceMotion) this.hardStop();
+      else this.beginBurst();
+    }
   };
 
   constructor() {
@@ -98,9 +108,21 @@ export class Screensaver implements OnInit, OnDestroy {
     cancelAnimationFrame(this.raf);
   }
 
-  private stop(): void {
+  // Déclenche l'éclatement : chaque bulle explose avec un décalage selon sa
+  // position (vague de gauche à droite). L'animation continue dans la boucle.
+  private beginBurst(): void {
+    this.bursting = true;
+    this.burstStart = performance.now();
+    const w = this.viewW || window.innerWidth;
+    for (const b of this.bubbles) {
+      b.popDelay = (b.x / w) * 300 + Math.random() * 120;
+    }
+  }
+
+  private hardStop(): void {
     cancelAnimationFrame(this.raf);
     this.raf = 0;
+    this.bursting = false;
     this.removeResize?.();
     this.removeResize = undefined;
     this.zone.run(() => this.active.set(false));
@@ -116,6 +138,7 @@ export class Screensaver implements OnInit, OnDestroy {
     const resize = (): void => {
       W = window.innerWidth;
       H = window.innerHeight;
+      this.viewW = W;
       canvas.width = W * dpr;
       canvas.height = H * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -126,15 +149,36 @@ export class Screensaver implements OnInit, OnDestroy {
 
     const target = this.targetCount(W, H);
     this.bubbles = this.reduceMotion ? this.spawnStatic(W, H, target) : [];
+    this.bursting = false;
     let lastSpawn = 0;
 
     const draw = (t: number): void => {
       // Apparition progressive : les bulles descendent une à une depuis le haut.
-      if (!this.reduceMotion && this.bubbles.length < target && t - lastSpawn > 170) {
+      if (!this.bursting && !this.reduceMotion && this.bubbles.length < target && t - lastSpawn > 150) {
         this.bubbles.push(this.spawnTop(W));
         lastSpawn = t;
       }
+
       ctx.clearRect(0, 0, W, H);
+
+      if (this.bursting) {
+        let alive = false;
+        for (const b of this.bubbles) {
+          const local = t - this.burstStart - (b.popDelay ?? 0);
+          if (local < 0) {
+            b.x += b.vx; b.y += b.vy; // continue de flotter avant d'éclater
+            this.paint(ctx, b);
+            alive = true;
+          } else if (local < POP_MS) {
+            this.paintPop(ctx, b, local / POP_MS);
+            alive = true;
+          }
+        }
+        if (!alive) { this.hardStop(); return; }
+        this.raf = requestAnimationFrame(draw);
+        return;
+      }
+
       for (const b of this.bubbles) {
         if (!this.reduceMotion) {
           b.x += b.vx;
@@ -151,8 +195,9 @@ export class Screensaver implements OnInit, OnDestroy {
     this.raf = requestAnimationFrame(draw);
   }
 
+  // Plus de bulles sur grand écran (densité plus élevée, plafond relevé).
   private targetCount(W: number, H: number): number {
-    return Math.max(30, Math.min(64, Math.round((W * H) / 32_000)));
+    return Math.max(28, Math.min(110, Math.round((W * H) / 22_000)));
   }
 
   // Bulle qui entre par le haut, hors écran, en descendant.
@@ -207,5 +252,28 @@ export class Screensaver implements OnInit, OnDestroy {
     ctx.fillStyle = 'rgba(255,255,255,0.55)';
     ctx.arc(b.x - b.r * 0.34, b.y - b.r * 0.34, b.r * 0.13, 0, Math.PI * 2);
     ctx.fill();
+  }
+
+  // Éclatement : la bulle enfle, s'estompe, et laisse un anneau qui se dilate.
+  private paintPop(ctx: CanvasRenderingContext2D, b: Bubble, p: number): void {
+    const ease = 1 - (1 - p) * (1 - p); // out-quad
+    const fade = 1 - p;
+
+    // Halo/corps qui gonfle et disparaît.
+    const rr = b.r * (1 + 0.55 * ease);
+    const g = ctx.createRadialGradient(b.x, b.y, b.r * 0.2, b.x, b.y, rr);
+    g.addColorStop(0, `hsla(${b.hue}, 80%, 80%, ${0.22 * fade})`);
+    g.addColorStop(1, `hsla(${(b.hue + 40) % 360}, 90%, 68%, 0)`);
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.arc(b.x, b.y, rr, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Anneau irisé qui se dilate.
+    ctx.beginPath();
+    ctx.arc(b.x, b.y, b.r * (1 + 0.75 * ease), 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(255,255,255,${0.55 * fade})`;
+    ctx.lineWidth = 2.5 * fade + 0.5;
+    ctx.stroke();
   }
 }
