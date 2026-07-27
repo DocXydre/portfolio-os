@@ -36,7 +36,7 @@ import { FOLDERS } from '../data/projects';
 
       <button class="icon" (dblclick)="openAbout()">
         <img class="glyph" src="icons/about.png" alt="" />
-        <span class="cap">À propos de moi</span>
+        <span class="cap">À propos du portfolio</span>
       </button>
     </div>
   `,
@@ -100,6 +100,6 @@ export class Desktop {
     });
   }
   openAbout(): void {
-    this.wm.open({ type: 'about', title: 'À propos de moi', icon: 'about', width: 480, height: 420, key: 'about' });
+    this.wm.open({ type: 'about', title: 'À propos du portfolio', icon: 'about', width: 500, height: 460, key: 'about' });
   }
 }

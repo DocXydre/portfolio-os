@@ -43,17 +43,52 @@ import { PhotoViewer } from './apps/photo-viewer';
               }
               @case ('about') {
                 <div class="about">
-                  <h1>Thomas Mathis</h1>
-                  <p class="role">Développeur web · MIAGE</p>
+                  <h1>À propos du portfolio</h1>
+                  <p class="role">Un portfolio qui se prend pour un OS</p>
                   <p>
-                    Bienvenue sur mon portfolio interactif. Chaque dossier du bureau
-                    regroupe mes projets par contexte : alternance &amp; stage, projets
-                    personnels, et projets académiques.
+                    Ce site est conçu comme un système d'exploitation inspiré de Windows XP.
+                    Le bureau, les fenêtres déplaçables, l'explorateur de fichiers, la visionneuse
+                    de photos et l'écran de veille à bulles sont tous des composants faits main.
                   </p>
-                  <p>Double-cliquez sur un dossier pour explorer, puis sur un projet pour l'ouvrir.</p>
+                  <p>
+                    Côté technique : <b>Angular 20</b> en composants standalone et signals, sans
+                    framework d'interface — juste du SCSS et <b>XP.css</b> pour retrouver l'esprit
+                    Luna. Le tout est déployé automatiquement sur GitHub Pages.
+                  </p>
+                  <p>
+                    J'ai développé ce portfolio avec l'aide de <b>Claude</b>, l'assistant IA
+                    d'Anthropic, comme binôme de programmation — de l'architecture jusqu'aux
+                    finitions.
+                  </p>
+                  <p class="hint">Astuce : tout n'est pas visible au premier coup d'œil. Fouinez un peu…</p>
+                </div>
+              }
+              @case ('me') {
+                <div class="about me">
+                  <div class="me-head">
+                    <img class="me-ava" src="icons/profile.png" alt="" />
+                    <div>
+                      <h1>Thomas Mathis</h1>
+                      <p class="role">Développeur web · étudiant MIAGE</p>
+                    </div>
+                  </div>
+                  <p>
+                    Salut ! Je suis Thomas, développeur orienté front-end et étudiant en MIAGE à
+                    l'Université de Lorraine. J'aime autant soigner une interface que comprendre ce
+                    qui tourne derrière.
+                  </p>
+                  <p>
+                    En dehors du code : les voyages (le Japon m'a marqué), la culture rétro et les
+                    jeux Nintendo — ça se ressent sûrement dans ce portfolio.
+                  </p>
+                  <p>
+                    Toujours partant pour un projet qui a du caractère ou une opportunité en
+                    alternance.
+                  </p>
                   <p class="contact">
-                    <a href="mailto:tmathis.dev&#64;gmail.com">tmathis.dev&#64;gmail.com</a> ·
-                    <a href="https://github.com/DocXydre" target="_blank" rel="noopener">GitHub</a>
+                    <a href="mailto:tmathis.dev&#64;gmail.com">Email</a> ·
+                    <a href="https://github.com/DocXydre" target="_blank" rel="noopener">GitHub</a> ·
+                    <a href="https://www.linkedin.com/in/mathisthomas/" target="_blank" rel="noopener">LinkedIn</a>
                   </p>
                 </div>
               }
@@ -68,11 +103,16 @@ import { PhotoViewer } from './apps/photo-viewer';
     </div>
   `,
   styles: [`
-    .about { padding: 20px 24px; line-height: 1.6; }
+    .about { padding: 20px 24px; line-height: 1.6; overflow: auto; height: 100%; }
     .about h1 { margin: 0; color: var(--accent-deep); font-size: 20px; }
     .about .role { margin: 2px 0 14px; color: #555; font-weight: bold; }
     .about p { margin: 0 0 12px; }
+    .about b { color: var(--accent-deep); }
+    .about .hint { color: #777; font-style: italic; font-size: 12px; }
     .about .contact a { color: var(--accent); font-weight: bold; }
+    .me-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+    .me-ava { width: 60px; height: 60px; border-radius: 8px; border: 2px solid var(--accent); object-fit: cover; }
+    .me-head h1 { font-size: 19px; }
   `],
 })
 export class App {

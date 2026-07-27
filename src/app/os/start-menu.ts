@@ -11,7 +11,7 @@ import { FOLDERS } from '../data/projects';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="menu" (pointerdown)="$event.stopPropagation()">
-      <header class="user">
+      <header class="user" (click)="me()" title="Voir mon profil">
         <img class="avatar" src="icons/profile.png" alt="Thomas Mathis" />
         <span class="name">Thomas Mathis</span>
       </header>
@@ -20,7 +20,7 @@ import { FOLDERS } from '../data/projects';
         <ul class="col left">
           <li><button (click)="about()">
             <img src="icons/about.png" alt="" />
-            <span><b>À propos de moi</b><small>CV & parcours</small></span>
+            <span><b>À propos du portfolio</b><small>Comment ce site est fait</small></span>
           </button></li>
           <li class="sep"></li>
           @for (f of folders; track f.id) {
@@ -33,6 +33,7 @@ import { FOLDERS } from '../data/projects';
         <ul class="col right">
           <li><a href="mailto:tmathis.dev@gmail.com">Me contacter</a></li>
           <li><a href="https://github.com/DocXydre" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/mathisthomas/" target="_blank" rel="noopener">LinkedIn</a></li>
         </ul>
       </div>
 
@@ -54,8 +55,9 @@ import { FOLDERS } from '../data/projects';
     .user {
       display: flex; align-items: center; gap: 8px;
       background: var(--title-grad); color: #fff;
-      padding: 8px 10px; font-weight: bold;
+      padding: 8px 10px; font-weight: bold; cursor: pointer;
     }
+    .user:hover { filter: brightness(1.08); }
     .avatar {
       width: 40px; height: 40px; border-radius: 4px;
       border: 2px solid #fff; object-fit: cover;
@@ -100,7 +102,12 @@ export class StartMenu {
     this.close.emit();
   }
   about(): void {
-    this.wm.open({ type: 'about', title: 'À propos de moi', icon: 'about', width: 480, height: 420, key: 'about' });
+    this.wm.open({ type: 'about', title: 'À propos du portfolio', icon: 'about', width: 500, height: 460, key: 'about' });
+    this.close.emit();
+  }
+  /** Fenêtre "cachée" sur ma personne, ouverte depuis le bandeau profil. */
+  me(): void {
+    this.wm.open({ type: 'me', title: 'Thomas Mathis', icon: 'user', width: 460, height: 420, key: 'me' });
     this.close.emit();
   }
 }

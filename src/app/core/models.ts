@@ -2,7 +2,7 @@
 
 export type FolderId = 'stage' | 'perso' | 'ecole';
 
-export type WindowType = 'explorer' | 'project' | 'about' | 'pdf' | 'photo';
+export type WindowType = 'explorer' | 'project' | 'about' | 'me' | 'pdf' | 'photo';
 
 /** Charge utile d'une fenêtre selon son type. */
 export interface WindowData {
