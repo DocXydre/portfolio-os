@@ -106,11 +106,17 @@ export const PROJECTS: Project[] = [
     stack: ['TypeScript', 'Hono', 'Bun', 'TSX', 'HTML5', 'CSS (Milligram)'],
     summary: "Application MVC de gestion de parkings avec routage dynamique et vues TSX.",
     description: [
-      "Au sein d'un groupe de travail, j'ai été chargé de la mise en place de l'architecture MVC de l'application et de la configuration de son système de routage, en exploitant le framework Hono.",
-      "J'ai implémenté un routage avancé pour gérer des URL dynamiques, extrayant et affichant les données des villes et de leurs parkings depuis une base locale.",
-      "J'ai conçu l'interface via des composants fonctionnels TSX générant des vues HTML dynamiques, et sécurisé la navigation par une gestion centralisée des erreurs HTTP.",
+      "Projet en binôme (avec Justin Burr) : application web « EuroPark » de présentation et de gestion de parkings à travers l'Europe. J'ai écrit et commenté l'essentiel du code, mon binôme s'est chargé des tests.",
+      "J'ai mis en place l'architecture MVC de l'application et son système de routage avec le framework Hono (sur Bun). Le routage gère des URL dynamiques qui parcourent la hiérarchie des données : liste des villes, détail d'une ville, liste de ses parkings, puis fiche d'un parking (nombre de places, tarif horaire).",
+      "L'interface est générée par des composants fonctionnels TSX produisant des vues HTML dynamiques, stylées avec la bibliothèque Milligram. J'ai aussi sécurisé la navigation par une gestion centralisée des erreurs HTTP, et configuré le service des fichiers statiques (via @hono/node-server) pour l'affichage des visuels.",
     ],
-    images: [],
+    images: [
+      'projects/europark-1.webp',
+      'projects/europark-2.webp',
+      'projects/europark-3.webp',
+      'projects/europark-4.webp',
+      'projects/europark-5.webp',
+    ],
     link: undefined,
   },
   {
