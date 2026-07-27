@@ -28,7 +28,13 @@ export const PROJECTS: Project[] = [
       "L'objectif était de remplacer un formulaire existant peu intuitif qui générait des erreurs de saisie. J'ai conçu l'interface et réalisé l'intégration : élaboration des maquettes, restructuration du formulaire en sections distinctes, et affichage des demandes en \"Bento design\".",
       "La nouvelle interface limite les erreurs grâce à une ergonomie repensée et intègre un système de suivi des statuts clair et réactif.",
     ],
-    images: [],
+    images: [
+      'projects/vosges-1.webp',
+      'projects/vosges-2.webp',
+      'projects/vosges-3.webp',
+      'projects/vosges-4.webp',
+      'projects/vosges-5.webp',
+    ],
     link: undefined,
   },
   {
@@ -45,7 +51,15 @@ export const PROJECTS: Project[] = [
       "J'ai élaboré les maquettes en \"Bento design\", puis structuré le back-end avec des Custom Post Types dédiés pour gérer dynamiquement l'affichage des formations, expériences et projets.",
       "Le projet a abouti à un site techniquement opérationnel : architecture MVC fonctionnelle, base de données configurée pour une saisie simplifiée via Gutenberg, intégration graphique réalisée. Une ébauche aboutie côté technique, mise en pause pour un autre projet.",
     ],
-    images: [],
+    images: [
+      'projects/portfolio-1.webp',
+      'projects/portfolio-2.webp',
+      'projects/portfolio-3.webp',
+      'projects/portfolio-4.webp',
+      'projects/portfolio-5.webp',
+      'projects/portfolio-6.webp',
+      'projects/portfolio-7.webp',
+    ],
     link: undefined,
   },
   {
@@ -109,11 +123,15 @@ export const PROJECTS: Project[] = [
     stack: ['HTML', 'CSS', 'JavaScript'],
     summary: "Recréation du mini-jeu de Super Mario 64 DS dans une interface simulant une Nintendo DS.",
     description: [
-      "J'ai pris en charge la logique interactive et l'intégration graphique. Après l'exercice de base (génération et suppression dynamique d'éléments dans le DOM), j'ai imaginé et conçu une version finale inspirée de l'univers de Mario.",
-      "L'étape finale exigeait une réappropriation créative d'une étoile interactive : j'ai choisi de recréer le mini-jeu nostalgique « Loves me… loves me not » de Super Mario 64 DS.",
-      "J'ai conçu une interface simulant une console Nintendo DS, avec une vidéo en arrière-plan pour les animations et l'ambiance sonore, et adapté la logique JavaScript pour recréer l'effeuillage aléatoire des pétales.",
+      "Projet en deux temps autour de la manipulation dynamique du DOM en JavaScript. J'ai pris en charge toute la logique interactive et l'intégration graphique.",
+      "Première partie : une étoile placée au centre de l'écran. Un clic sur son cœur fait apparaître des branches disposées aléatoirement autour d'elle, et chaque branche se supprime d'un simple clic — un exercice concret de création et de suppression d'éléments à la volée.",
+      "Seconde partie : j'ai réemployé cette mécanique pour en faire un mini-jeu, en réappropriation créative du concept. Le bouton central devient une fleur : chaque pétale effeuillé retire une ligne de texte (« Loves me… loves me not ») et fait changer le bouton d'apparence à chaque interaction, en clin d'œil au mini-jeu de Super Mario 64 DS.",
+      "Le tout est présenté dans une interface qui simule une console Nintendo DS, avec une vidéo en arrière-plan gérant l'animation et l'ambiance sonore. Réalisé en HTML, CSS et JavaScript.",
     ],
-    images: [],
+    images: [
+      'projects/lovesme-1.webp',
+      'projects/lovesme-2.webp',
+    ],
     link: undefined,
   },
 ];
