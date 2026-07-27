@@ -1,15 +1,26 @@
-import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+  computed,
+  effect,
+  input,
+  signal,
+  untracked,
+} from '@angular/core';
 
-/* Visionneuse d'images, façon "Aperçu des images et télécopies" de XP.
-   Reçoit la galerie du dossier + l'index de départ, permet précédent/suivant. */
+/* Visionneuse d'images, façon "Aperçu des images" de XP.
+   Galerie + index de départ. Navigation : boutons de la barre, flèches
+   clavier (←/→) sur PC, et glissement (swipe) au doigt sur mobile. */
 
 @Component({
   selector: 'app-photo-viewer',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="viewer">
-      <div class="stage">
-        <img [src]="current()" [alt]="caption()" />
+      <div class="stage" (pointerdown)="onDown($event)" (pointerup)="onUp($event)">
+        <img [src]="current()" [alt]="caption()" draggable="false" />
       </div>
 
       <div class="bar">
@@ -24,9 +35,9 @@ import { ChangeDetectionStrategy, Component, computed, input, signal } from '@an
     .viewer { display: flex; flex-direction: column; height: 100%; background: #5c5c5c; }
     .stage {
       flex: 1; display: flex; align-items: center; justify-content: center;
-      overflow: hidden; padding: 8px;
+      overflow: hidden; padding: 8px; touch-action: pan-y;
     }
-    .stage img { max-width: 100%; max-height: 100%; object-fit: contain; box-shadow: 0 2px 12px rgba(0,0,0,0.5); }
+    .stage img { max-width: 100%; max-height: 100%; object-fit: contain; box-shadow: 0 2px 12px rgba(0,0,0,0.5); -webkit-user-drag: none; }
 
     .bar {
       display: flex; align-items: center; gap: 10px;
@@ -37,13 +48,12 @@ import { ChangeDetectionStrategy, Component, computed, input, signal } from '@an
     .caption { flex: 1; font-size: 12px; color: #1a1a1a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .counter { font-size: 11px; color: #444; }
     .nav {
-      width: 30px; height: 24px; font-size: 18px; line-height: 1;
-      cursor: pointer;
+      min-width: 30px; height: 24px; font-size: 18px; line-height: 1; cursor: pointer;
     }
     .nav:disabled { opacity: 0.4; cursor: default; }
   `],
 })
-export class PhotoViewer {
+export class PhotoViewer implements OnInit, OnDestroy {
   readonly images = input.required<string[]>();
   readonly captions = input<string[]>([]);
   readonly startIndex = input<number>(0);
@@ -58,9 +68,36 @@ export class PhotoViewer {
   protected readonly current = computed(() => this.images()[this.index()] ?? '');
   protected readonly caption = computed(() => this.captions()[this.index()] ?? '');
 
+  private downX: number | null = null;
+
   constructor() {
-    // Position de départ transmise par l'explorateur.
-    queueMicrotask(() => this._i.set(this.startIndex()));
+    // Se (re)positionne quand on ouvre une nouvelle image, même viewer déjà ouvert.
+    effect(() => {
+      const s = this.startIndex();
+      untracked(() => this._i.set(s));
+    });
+  }
+
+  private readonly onKey = (e: KeyboardEvent): void => {
+    if (e.key === 'ArrowLeft') this.prev();
+    else if (e.key === 'ArrowRight') this.next();
+  };
+
+  ngOnInit(): void {
+    window.addEventListener('keydown', this.onKey);
+  }
+  ngOnDestroy(): void {
+    window.removeEventListener('keydown', this.onKey);
+  }
+
+  onDown(e: PointerEvent): void {
+    this.downX = e.clientX;
+  }
+  onUp(e: PointerEvent): void {
+    if (this.downX === null) return;
+    const dx = e.clientX - this.downX;
+    this.downX = null;
+    if (Math.abs(dx) > 40) (dx < 0 ? this.next() : this.prev());
   }
 
   prev(): void { this._i.update((v) => v - 1); }

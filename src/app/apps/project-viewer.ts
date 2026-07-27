@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { Project } from '../core/models';
+import { WindowService } from '../core/window.service';
 import { projectById } from '../data/projects';
 
 /* Fiche d'un projet. Structure façon "vue dossier XP" : volet bleu de
@@ -42,9 +43,10 @@ import { projectById } from '../data/projects';
           }
 
           @if (p.images.length) {
+            <p class="shots-hint">Cliquez sur une image pour l'agrandir</p>
             <div class="shots">
-              @for (src of p.images; track src) {
-                <img [src]="src" [alt]="p.name" loading="lazy" />
+              @for (src of p.images; track src; let i = $index) {
+                <img [src]="src" [alt]="p.name" loading="lazy" (click)="openImage(p, i)" />
               }
             </div>
           }
@@ -85,13 +87,35 @@ import { projectById } from '../data/projects';
     .content h1 { font-size: 17px; color: var(--accent-deep); margin: 0 0 12px; }
     .content p { margin: 0 0 12px; }
 
-    .shots { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
-    .shots img { max-width: 100%; border: 1px solid #9db0cf; border-radius: 3px; }
+    .shots-hint { color: #667; font-size: 11px; font-style: italic; margin: 6px 0 4px; }
+    .shots { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+    .shots img {
+      max-width: 100%; border: 1px solid #9db0cf; border-radius: 3px;
+      cursor: zoom-in; transition: box-shadow 0.15s, transform 0.15s;
+    }
+    .shots img:hover { box-shadow: 0 2px 10px rgba(49,106,197,0.4); }
 
     .missing { padding: 20px; }
   `],
 })
 export class ProjectViewer {
   readonly projectId = input.required<string>();
+  private readonly wm = inject(WindowService);
   protected readonly project = computed<Project | undefined>(() => projectById(this.projectId()));
+
+  openImage(p: Project, index: number): void {
+    this.wm.open({
+      type: 'photo',
+      title: p.name,
+      icon: 'photo',
+      width: 820,
+      height: 620,
+      data: {
+        images: p.images,
+        captions: p.images.map(() => p.name),
+        imageIndex: index,
+      },
+      key: 'photo-viewer',
+    });
+  }
 }
