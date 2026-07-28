@@ -1,0 +1,30 @@
+# Caddyfile — un seul serveur, plusieurs sites, HTTPS auto pour chacun.
+# À placer dans /etc/caddy/Caddyfile puis : sudo systemctl reload caddy
+# Remplace les domaines par les tiens (sous-domaines DuckDNS ou domaine perso).
+
+# ── Site 1 : le portfolio (statique Angular) ─────────────────────────
+portfolio.ton-domaine.fr {
+    root * /var/www/portfolio
+    encode zstd gzip
+    file_server
+    try_files {path} /index.html
+
+    @assets path *.js *.css *.woff2 *.webp *.jpg *.png *.ico
+    header @assets Cache-Control "public, max-age=31536000, immutable"
+    header /index.html Cache-Control "no-cache"
+}
+
+# ── Site 2 : un micro-site statique ──────────────────────────────────
+projet2.ton-domaine.fr {
+    root * /var/www/projet2
+    encode zstd gzip
+    file_server
+}
+
+# ── Site 3 : une appli dynamique (ex. service Node/Bun sur :3000) ─────
+api.ton-domaine.fr {
+    reverse_proxy localhost:3000
+}
+
+# Ajouter un site = ajouter un bloc { } avec son domaine. Caddy récupère
+# le certificat Let's Encrypt de chacun automatiquement.
