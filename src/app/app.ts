@@ -18,7 +18,8 @@ import { PhotoViewer } from './apps/photo-viewer';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [Desktop, Taskbar, WindowFrame, Explorer, ProjectViewer, PdfViewer, PhotoViewer, Screensaver, Boot],
   template: `
-    <div class="desktop" [style.background-image]="wallpaper" (pointerdown)="onDesktopClick($event)">
+    <div class="desktop" (pointerdown)="onDesktopClick($event)">
+      <img class="wallpaper" src="wallpaper/wallpaper.webp" alt="" />
       <app-desktop />
 
       @for (w of wm.windows(); track w.id) {
@@ -103,6 +104,11 @@ import { PhotoViewer } from './apps/photo-viewer';
     </div>
   `,
   styles: [`
+    .wallpaper {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+      z-index: 0; pointer-events: none; user-select: none;
+    }
     .about { padding: 20px 24px; line-height: 1.6; overflow: auto; height: 100%; }
     .about h1 { margin: 0; color: var(--accent-deep); font-size: 20px; }
     .about .role { margin: 2px 0 14px; color: #555; font-weight: bold; }
@@ -118,8 +124,6 @@ import { PhotoViewer } from './apps/photo-viewer';
 export class App {
   protected readonly wm = inject(WindowService);
 
-  // Fond d'écran appliqué à l'exécution (chemin relatif, respecte le base-href).
-  protected readonly wallpaper = "url('wallpaper/wallpaper.webp')";
 
   onDesktopClick(_ev: PointerEvent): void {
     // Réservé : désélection des icônes du bureau (à venir).

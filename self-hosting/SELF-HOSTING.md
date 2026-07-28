@@ -28,9 +28,9 @@ La correction est **gratuite** :
 
 Tu as aussi l'**IPv6 native** en full ; Caddy servira en IPv4 + IPv6 sans rien faire.
 
-## 2. Installer Debian 12 (minimal) sur l'Atom
+## 2. Installer Debian 13 (minimal) sur l'Atom
 
-ISO **Debian 12 netinst amd64** (l'Atom 230 est bien 64 bits). À l'install :
+ISO **Debian 13 netinst amd64** (l'Atom 230 est bien 64 bits). À l'install :
 décoche l'environnement de bureau, garde « SSH server » + utilitaires standard.
 Fige l'IP locale (réservation DHCP dans la Freebox).
 

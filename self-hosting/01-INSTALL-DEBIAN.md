@@ -1,4 +1,8 @@
-# Phase 1 — Installer Debian 12 sur l'Atom (base du serveur)
+# Phase 1 — Installer Debian 13 (Trixie) sur l'Atom (base du serveur)
+
+> Debian 13 est la stable actuelle et convient à l'Atom 230 : sa base amd64
+> reste sur le jeu d'instructions x86-64 d'origine (pas d'exigence x86-64-v2),
+> donc ce vieux CPU 64 bits est bien supporté.
 
 Objectif : un Debian minimal, sans bureau, accessible en SSH. **Tout en DHCP**
 pour l'instant : le serveur est sur un switch temporaire, il sera déplacé ensuite.
@@ -11,11 +15,10 @@ câble réseau branché au switch (pour que le DHCP fonctionne).
 
 ## 1. Créer la clé USB d'installation (depuis le Mac)
 
-1. Télécharge l'image **Debian 12 netinst amd64** :
+1. Télécharge l'image **Debian 13 netinst amd64** :
    <https://www.debian.org/distrib/> → « Petits CD » → `amd64` →
-   `debian-12.x.x-amd64-netinst.iso`
-   (L'image standard inclut désormais les firmwares — utile pour la carte réseau
-   de l'Atom.)
+   `debian-13.x.x-amd64-netinst.iso`
+   (L'image standard inclut les firmwares — utile pour la carte réseau de l'Atom.)
 
 2. Écris-la sur la clé. Le plus simple : **balenaEtcher**
    (<https://etcher.balena.io>) → sélectionne l'ISO → la clé → Flash.
@@ -24,7 +27,7 @@ câble réseau branché au switch (pour que le DHCP fonctionne).
    ```bash
    diskutil list                      # repère la clé, ex. /dev/disk4
    diskutil unmountDisk /dev/disk4
-   sudo dd if=~/Downloads/debian-12.x.x-amd64-netinst.iso of=/dev/rdisk4 bs=4m status=progress
+   sudo dd if=~/Downloads/debian-13.x.x-amd64-netinst.iso of=/dev/rdisk4 bs=4m status=progress
    diskutil eject /dev/disk4
    ```
 

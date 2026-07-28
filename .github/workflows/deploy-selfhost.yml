@@ -40,7 +40,7 @@ jobs:
 
       - name: Déployer (rsync)
         run: |
-          rsync -avz --delete \
+          rsync -avz --delete --chmod=D755,F644 \
             -e "ssh -p ${{ secrets.DEPLOY_PORT }} -i ~/.ssh/id_deploy" \
             dist/portfolio-windowsxp/browser/ \
             "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/"

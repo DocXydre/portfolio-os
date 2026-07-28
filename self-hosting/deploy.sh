@@ -16,6 +16,7 @@ echo "→ Build de production (base-href = /)"
 npm run build -- --base-href /
 
 echo "→ Envoi vers ${SERVER}:${REMOTE_DIR}"
-rsync -avz --delete dist/portfolio-windowsxp/browser/ "${SERVER}:${REMOTE_DIR}/"
+# --chmod force des permissions lisibles par Caddy (dossiers 755, fichiers 644)
+rsync -avz --delete --chmod=D755,F644 dist/portfolio-windowsxp/browser/ "${SERVER}:${REMOTE_DIR}/"
 
 echo "✓ Déployé. (Recharge la page sur ton domaine.)"
