@@ -117,6 +117,7 @@ export const PROJECTS: Project[] = [
       'projects/europark-4.webp',
       'projects/europark-5.webp',
     ],
+    demoUrl: 'https://europark.thomasmathis.me',
     link: undefined,
   },
   {
@@ -138,6 +139,7 @@ export const PROJECTS: Project[] = [
       'projects/lovesme-1.webp',
       'projects/lovesme-2.webp',
     ],
+    demoUrl: 'https://lovesme.thomasmathis.me/ds.html',
     link: undefined,
   },
 ];

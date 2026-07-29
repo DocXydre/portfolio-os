@@ -9,6 +9,7 @@ import { Explorer } from './apps/explorer';
 import { ProjectViewer } from './apps/project-viewer';
 import { PdfViewer } from './apps/pdf-viewer';
 import { PhotoViewer } from './apps/photo-viewer';
+import { Ie } from './apps/ie';
 
 /* Racine de l'OS : le bureau, la couche des fenêtres (une boucle sur le
    signal), la taskbar. Le contenu de chaque fenêtre est choisi par @switch. */
@@ -16,7 +17,7 @@ import { PhotoViewer } from './apps/photo-viewer';
 @Component({
   selector: 'app-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [Desktop, Taskbar, WindowFrame, Explorer, ProjectViewer, PdfViewer, PhotoViewer, Screensaver, Boot],
+  imports: [Desktop, Taskbar, WindowFrame, Explorer, ProjectViewer, PdfViewer, PhotoViewer, Ie, Screensaver, Boot],
   template: `
     <div class="desktop" (pointerdown)="onDesktopClick($event)">
       <img class="wallpaper" src="wallpaper/wallpaper.webp" alt="" />
@@ -34,6 +35,9 @@ import { PhotoViewer } from './apps/photo-viewer';
               }
               @case ('pdf') {
                 <app-pdf-viewer [src]="w.data!.pdfSrc!" />
+              }
+              @case ('browser') {
+                <app-ie [url]="w.data!.url!" />
               }
               @case ('photo') {
                 <app-photo-viewer

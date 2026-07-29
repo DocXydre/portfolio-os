@@ -38,6 +38,13 @@ import { projectById } from '../data/projects';
 
         <section class="content">
           <h1>{{ p.name }}</h1>
+
+          @if (p.demoUrl) {
+            <button class="ie-btn" (click)="openDemo(p)">
+              <img src="icons/ie.png" alt="" /> Ouvrir la démo dans Internet Explorer
+            </button>
+          }
+
           @for (para of p.description; track $index) {
             <p>{{ para }}</p>
           }
@@ -87,6 +94,15 @@ import { projectById } from '../data/projects';
     .content h1 { font-size: 17px; color: var(--accent-deep); margin: 0 0 12px; }
     .content p { margin: 0 0 12px; }
 
+    .ie-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin: 0 0 14px; padding: 7px 12px; font: inherit; font-size: 12px;
+      cursor: pointer; border: 1px solid #7f9db9; border-radius: 4px;
+      background: linear-gradient(to bottom, #fff, #e8eefb); color: var(--accent-deep); font-weight: bold;
+    }
+    .ie-btn:hover { background: linear-gradient(to bottom, #fff, #dbe8fb); box-shadow: 0 1px 4px rgba(49,106,197,0.3); }
+    .ie-btn img { width: 18px; height: 18px; }
+
     .shots-hint { color: #667; font-size: 11px; font-style: italic; margin: 6px 0 4px; }
     .shots { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
     .shots img {
@@ -116,6 +132,19 @@ export class ProjectViewer {
         imageIndex: index,
       },
       key: 'photo-viewer',
+    });
+  }
+
+  openDemo(p: Project): void {
+    if (!p.demoUrl) return;
+    this.wm.open({
+      type: 'browser',
+      title: `${p.name} — Internet Explorer`,
+      icon: 'ie',
+      width: 900,
+      height: 640,
+      data: { url: p.demoUrl },
+      key: `ie:${p.id}`,
     });
   }
 }

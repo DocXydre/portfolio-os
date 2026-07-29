@@ -2,7 +2,7 @@
 
 export type FolderId = 'stage' | 'perso' | 'ecole';
 
-export type WindowType = 'explorer' | 'project' | 'about' | 'me' | 'pdf' | 'photo';
+export type WindowType = 'explorer' | 'project' | 'about' | 'me' | 'pdf' | 'photo' | 'browser';
 
 /** Charge utile d'une fenêtre selon son type. */
 export interface WindowData {
@@ -16,6 +16,8 @@ export interface WindowData {
   images?: string[];
   captions?: string[];
   imageIndex?: number;
+  /** browser (Internet Explorer) : URL à charger dans l'iframe. */
+  url?: string;
 }
 
 /** Une fenêtre ouverte à l'écran. Tout l'état visuel tient ici. */
@@ -88,4 +90,6 @@ export interface Project {
   link?: string;
   /** Repo public, si il existe. */
   repo?: string;
+  /** URL du projet en live, à ouvrir dans la fenêtre Internet Explorer. */
+  demoUrl?: string;
 }
