@@ -29,6 +29,11 @@ import { FOLDERS } from '../data/projects';
         <span class="cap">Mes images</span>
       </button>
 
+      <button class="icon" (dblclick)="openIe()">
+        <img class="glyph" src="icons/ie.png" alt="" />
+        <span class="cap">Internet Explorer</span>
+      </button>
+
       <button class="icon" (dblclick)="openCv()">
         <img class="glyph" src="icons/pdf.png" alt="" />
         <span class="cap">CV.pdf</span>
@@ -107,6 +112,12 @@ export class Desktop {
     this.wm.open({
       type: 'pdf', title: CV_FILE.name, icon: 'pdf',
       width: 640, height: 640, data: { pdfSrc: CV_FILE.pdfSrc }, key: 'pdf:cv',
+    });
+  }
+  openIe(): void {
+    this.wm.open({
+      type: 'browser', title: 'Internet Explorer', icon: 'ie',
+      width: 900, height: 640, data: {}, key: 'ie:home',
     });
   }
   openAbout(): void {

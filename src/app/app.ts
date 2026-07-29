@@ -37,7 +37,7 @@ import { Ie } from './apps/ie';
                 <app-pdf-viewer [src]="w.data!.pdfSrc!" />
               }
               @case ('browser') {
-                <app-ie [url]="w.data!.url!" />
+                <app-ie [url]="w.data?.url ?? ''" />
               }
               @case ('photo') {
                 <app-photo-viewer
