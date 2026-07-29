@@ -25,7 +25,7 @@ import { FOLDERS } from '../data/projects';
       }
 
       <button class="icon" (dblclick)="openImages()">
-        <img class="glyph" src="icons/folder-pics.png" alt="" />
+        <img class="glyph" src="icons/folder-images.png" alt="" />
         <span class="cap">Mes images</span>
       </button>
 
@@ -102,7 +102,7 @@ export class Desktop {
     this.openExplorer(COMPUTER_ID, 'Poste de travail', 'computer');
   }
   openImages(): void {
-    this.openExplorer(MY_PICTURES_ID, 'Mes images', 'folder-pics');
+    this.openExplorer(MY_PICTURES_ID, 'Mes images', 'folder-images');
   }
   openFolder(id: FolderId): void {
     const f = FOLDERS.find((x) => x.id === id)!;

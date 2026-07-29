@@ -80,7 +80,7 @@ export const FS_ROOT: FsFolder = {
       kind: 'folder',
       id: 'my-pictures',
       name: 'Mes images',
-      icon: 'folder-pics',
+      icon: 'folder-images',
       children: PHOTOS.map(photoFile),
     },
     {
