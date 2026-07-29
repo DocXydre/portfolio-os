@@ -56,9 +56,9 @@ const SITES: Bookmark[] = [
           <span class="ar">►</span>
         </button>
         <span class="sep"></span>
-        <button class="tb stop" (click)="reload()" title="Arrêter"><span class="x">✕</span></button>
-        <button class="tb refresh" (click)="reload()" title="Actualiser"><span class="rf">⟳</span></button>
-        <button class="tb home" (click)="goHome()" title="Page de démarrage"><span class="hm">⌂</span></button>
+        <button class="ico stop" (click)="reload()" title="Arrêter">✕</button>
+        <button class="ico refresh" (click)="reload()" title="Actualiser">⟳</button>
+        <button class="ico home" (click)="goHome()" title="Page de démarrage">⌂</button>
         <span class="sep"></span>
         <button class="tb wide" (click)="goHome()" title="Rechercher"><span class="mag">🔍</span> Search</button>
         <button class="tb wide" (click)="goHome()" title="Favoris">
@@ -90,26 +90,38 @@ const SITES: Bookmark[] = [
       <!-- Contenu -->
       <div class="viewport">
         @if (isHome()) {
-          <!-- Page de démarrage : les deux sites -->
+          <!-- Page de démarrage : vue dossier XP, même DA que le Poste de travail -->
           <div class="startpage">
-            <header class="hp-head">
-              <img src="icons/ie.png" alt="" />
-              <div>
-                <h1>Mes projets en ligne</h1>
-                <p>Choisissez un site à ouvrir dans Internet Explorer.</p>
+            <aside class="hp-pane">
+              <div class="panel">
+                <div class="panel-head"><span>Mes projets en ligne</span><span class="chev">≪</span></div>
+                <div class="panel-body">
+                  <p class="p-intro">Choisissez un site à ouvrir dans Internet Explorer.</p>
+                </div>
               </div>
-            </header>
-            <ul class="hp-sites">
-              @for (s of sites; track s.url) {
-                <li>
-                  <a (click)="go(s.url)">
-                    <span class="hp-title">{{ s.label }}</span>
-                    <span class="hp-desc">{{ s.desc }}</span>
-                    <span class="hp-url">{{ s.url }}</span>
-                  </a>
-                </li>
-              }
-            </ul>
+              <div class="panel">
+                <div class="panel-head"><span>Détails</span><span class="chev">≪</span></div>
+                <div class="panel-body details">
+                  <p class="d-name">Projets web hébergés</p>
+                  <p class="d-type">2 sites en ligne</p>
+                </div>
+              </div>
+            </aside>
+
+            <section class="hp-content">
+              <h2 class="group-head">Projets en ligne</h2>
+              <div class="grid">
+                @for (s of sites; track s.url) {
+                  <button class="item" (click)="go(s.url)">
+                    <img class="thumb" src="icons/ie.png" alt="" />
+                    <span class="txt">
+                      <span class="i-name">{{ s.label }}</span>
+                      <span class="i-desc">{{ s.desc }}</span>
+                    </span>
+                  </button>
+                }
+              </div>
+            </section>
           </div>
         } @else {
           @if (loading()) { <div class="loading">Ouverture de {{ current() }} …</div> }
@@ -139,27 +151,34 @@ const SITES: Bookmark[] = [
     .menubar .brand { width: 22px; height: 22px; margin-left: auto; }
 
     /* Toolbar */
-    .toolbar { display: flex; align-items: center; gap: 4px; padding: 4px 6px;
+    .toolbar { display: flex; align-items: center; gap: 2px; padding: 3px 6px;
       background: linear-gradient(to bottom, #fbfbf7 0%, #e9e6db 100%); border-bottom: 1px solid #cfcabd; }
-    .toolbar .sep { width: 1px; height: 20px; background: #cfcabd; margin: 0 3px; }
+    .toolbar .sep { width: 1px; height: 18px; background: #cfcabd; margin: 0 4px; }
 
-    .nav { display: inline-flex; align-items: center; gap: 5px; height: 24px; padding: 0 9px;
+    .nav { display: inline-flex; align-items: center; gap: 5px; height: 22px; padding: 0 8px;
       border: 1px solid transparent; border-radius: 3px; background: none; font: inherit; color: #0a0a0a; cursor: pointer; }
-    .nav .ar { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px;
-      border-radius: 50%; color: #fff; font-size: 9px;
+    .nav .ar { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px;
+      border-radius: 50%; color: #fff; font-size: 8px;
       background: radial-gradient(circle at 40% 30%, #86e08a, #2f9d3a 70%, #217a2b);
       box-shadow: inset 0 0 0 1px rgba(255,255,255,.4); }
-    .nav.fwd { padding: 0 7px; }
+    .nav.fwd { padding: 0 6px; }
     .nav:hover:not(:disabled) { border-color: #a9c3ef; background: #eaf1fd; }
     .nav:disabled { color: #9a988f; cursor: default; }
     .nav:disabled .ar { background: radial-gradient(circle at 40% 30%, #cfcfcf, #9c9c9c 70%); }
 
-    .tb { display: inline-flex; align-items: center; gap: 4px; height: 24px; padding: 0 6px;
+    /* Boutons icône carrés, compacts */
+    .ico { width: 22px; height: 22px; padding: 0; flex: 0 0 auto;
+      display: inline-flex; align-items: center; justify-content: center; line-height: 1;
+      border: 1px solid transparent; border-radius: 3px; background: none; cursor: pointer;
+      font-size: 13px; overflow: hidden; }
+    .ico:hover { border-color: #a9c3ef; background: #eaf1fd; }
+    .ico.stop { color: #c62b2b; font-weight: bold; }
+    .ico.refresh { color: #2f7d34; font-weight: bold; }
+    .ico.home { color: #2b6bc6; font-size: 14px; }
+
+    .tb { display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 7px;
       border: 1px solid transparent; border-radius: 3px; background: none; font: inherit; color: #0a0a0a; cursor: pointer; }
     .tb:hover { border-color: #a9c3ef; background: #eaf1fd; }
-    .tb .x { color: #c62b2b; font-weight: bold; }
-    .tb .rf { color: #2f7d34; font-size: 15px; font-weight: bold; }
-    .tb .hm { color: #2b6bc6; font-size: 15px; }
     .tb .mag { font-size: 12px; filter: grayscale(.2); }
     .tb .favimg { width: 15px; height: 15px; }
 
@@ -185,19 +204,36 @@ const SITES: Bookmark[] = [
     .viewport iframe { width: 100%; height: 100%; border: none; display: block; }
     .loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #555; background: #fff; z-index: 1; }
 
-    /* Page de démarrage */
-    .startpage { height: 100%; overflow: auto; padding: 22px 26px; background: #fff; color: #1a1a1a; }
-    .hp-head { display: flex; align-items: center; gap: 14px; border-bottom: 2px solid #e2e0d5; padding-bottom: 14px; margin-bottom: 16px; }
-    .hp-head img { width: 40px; height: 40px; }
-    .hp-head h1 { margin: 0; font-size: 18px; color: #1c4da1; }
-    .hp-head p { margin: 3px 0 0; color: #555; font-size: 12px; }
-    .hp-sites { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
-    .hp-sites a { display: block; cursor: pointer; border: 1px solid #cdd8ea; border-radius: 6px;
-      padding: 12px 14px; text-decoration: none; background: linear-gradient(to bottom, #fbfcff, #eef3fc); transition: box-shadow .15s, border-color .15s; }
-    .hp-sites a:hover { border-color: #2f6fed; box-shadow: 0 2px 10px rgba(49,106,197,.25); }
-    .hp-title { display: block; font-size: 14px; font-weight: bold; color: #1c4da1; }
-    .hp-desc { display: block; color: #333; margin: 3px 0; }
-    .hp-url { display: block; color: #2f8d2f; font-size: 11px; }
+    /* Page de démarrage — même DA que le Poste de travail (explorateur XP) */
+    .startpage { display: flex; height: 100%; overflow: hidden; background: #fff; }
+
+    .hp-pane {
+      width: 200px; flex: 0 0 200px; overflow: auto; padding: 8px;
+      background: linear-gradient(to bottom, #6d8fd6 0%, #5b7fd0 30%, #7a9ce0 100%);
+    }
+    .panel { margin-bottom: 12px; border-radius: 4px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+    .panel-head { display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(to right, #3f6bd6, #6d97e8);
+      color: #fff; font-weight: bold; font-size: 11px; padding: 4px 8px; }
+    .chev { width: 15px; height: 15px; border-radius: 50%;
+      background: rgba(255,255,255,0.25); text-align: center; line-height: 15px; font-size: 9px; }
+    .panel-body { background: linear-gradient(to bottom, #d3e0f7, #c2d4f2); padding: 8px; }
+    .p-intro { margin: 0; font-size: 11px; color: #1a3f8f; }
+    .details p { margin: 0 0 3px; font-size: 11px; color: #1a2f5c; }
+    .details .d-name { font-weight: bold; }
+    .details .d-type { color: #45568a; }
+
+    .hp-content { flex: 1; padding: 12px 16px; overflow: auto; background: #fff; }
+    .group-head { font-size: 13px; font-weight: bold; color: #16336e; margin: 4px 0 2px; padding-bottom: 3px;
+      border-bottom: 1px solid; border-image: linear-gradient(to right, #16336e, #fff) 1; }
+    .grid { display: flex; flex-direction: column; gap: 4px; padding: 8px 0 14px; }
+    .item { display: flex; align-items: center; gap: 10px; width: 100%; max-width: 460px; text-align: left;
+      padding: 8px; background: none; border: 1px solid transparent; border-radius: 3px; cursor: pointer; font: inherit; }
+    .item:hover { background: rgba(49,106,197,0.10); }
+    .item .thumb { width: 32px; height: 32px; flex: 0 0 auto; }
+    .item .txt { display: flex; flex-direction: column; }
+    .item .i-name { font-size: 12px; font-weight: bold; color: #1c4da1; }
+    .item .i-desc { font-size: 11px; color: #333; }
 
     /* Status */
     .statusbar { display: flex; justify-content: space-between; align-items: center; padding: 2px 8px;
