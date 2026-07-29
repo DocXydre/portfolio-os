@@ -44,23 +44,22 @@ const SITES: Bookmark[] = [
       <div class="menubar">
         <span class="m">File</span><span class="m">Edit</span><span class="m">View</span>
         <span class="m">Favorites</span><span class="m">Tools</span><span class="m">Help</span>
-        <img class="brand" src="icons/ie.png" alt="" />
       </div>
 
       <!-- Barre d'outils -->
       <div class="toolbar">
         <button class="nav back" [disabled]="!canBack()" (click)="goBack()" title="Précédente">
-          <span class="ar">◄</span> Back
+          <img class="tbico" src="icons/ie-back.png" alt="" /> Back
         </button>
         <button class="nav fwd" [disabled]="!canFwd()" (click)="goFwd()" title="Suivante">
-          <span class="ar">►</span>
+          <img class="tbico" src="icons/ie-forward.png" alt="" />
         </button>
         <span class="sep"></span>
-        <button class="ico stop" (click)="reload()" title="Arrêter">✕</button>
-        <button class="ico refresh" (click)="reload()" title="Actualiser">⟳</button>
-        <button class="ico home" (click)="goHome()" title="Page de démarrage">⌂</button>
+        <button class="ico" (click)="reload()" title="Arrêter"><img class="tbico" src="icons/ie-stop.png" alt="" /></button>
+        <button class="ico" (click)="reload()" title="Actualiser"><img class="tbico" src="icons/ie-refresh.png" alt="" /></button>
+        <button class="ico" (click)="goHome()" title="Page de démarrage"><img class="tbico" src="icons/ie-home.png" alt="" /></button>
         <span class="sep"></span>
-        <button class="tb wide" (click)="goHome()" title="Rechercher"><span class="mag">🔍</span> Search</button>
+        <button class="tb wide" (click)="goHome()" title="Rechercher"><img class="tbico" src="icons/ie-search.png" alt="" /> Search</button>
         <button class="tb wide" (click)="goHome()" title="Favoris">
           <img class="favimg" src="icons/star.png" alt="" /> Favorites
         </button>
@@ -148,38 +147,28 @@ const SITES: Bookmark[] = [
     .menubar { display: flex; align-items: center; gap: 14px; padding: 2px 8px; background: #f6f5ee; border-bottom: 1px solid #d6d2c6; }
     .menubar .m { color: #111; }
     .menubar .m:first-letter { text-decoration: underline; }
-    .menubar .brand { width: 22px; height: 22px; margin-left: auto; }
 
     /* Toolbar */
     .toolbar { display: flex; align-items: center; gap: 2px; padding: 3px 6px;
       background: linear-gradient(to bottom, #fbfbf7 0%, #e9e6db 100%); border-bottom: 1px solid #cfcabd; }
     .toolbar .sep { width: 1px; height: 18px; background: #cfcabd; margin: 0 4px; }
+    .tbico { width: 18px; height: 18px; flex: 0 0 auto; }
 
-    .nav { display: inline-flex; align-items: center; gap: 5px; height: 22px; padding: 0 8px;
+    .nav { display: inline-flex; align-items: center; gap: 5px; height: 24px; padding: 0 8px;
       border: 1px solid transparent; border-radius: 3px; background: none; font: inherit; color: #0a0a0a; cursor: pointer; }
-    .nav .ar { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px;
-      border-radius: 50%; color: #fff; font-size: 8px;
-      background: radial-gradient(circle at 40% 30%, #86e08a, #2f9d3a 70%, #217a2b);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.4); }
-    .nav.fwd { padding: 0 6px; }
     .nav:hover:not(:disabled) { border-color: #a9c3ef; background: #eaf1fd; }
     .nav:disabled { color: #9a988f; cursor: default; }
-    .nav:disabled .ar { background: radial-gradient(circle at 40% 30%, #cfcfcf, #9c9c9c 70%); }
+    .nav:disabled .tbico { filter: grayscale(1); opacity: .45; }
 
     /* Boutons icône carrés, compacts */
-    .ico { width: 22px; height: 22px; padding: 0; flex: 0 0 auto;
-      display: inline-flex; align-items: center; justify-content: center; line-height: 1;
-      border: 1px solid transparent; border-radius: 3px; background: none; cursor: pointer;
-      font-size: 13px; overflow: hidden; }
+    .ico { width: 24px; height: 24px; padding: 0; flex: 0 0 auto;
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 1px solid transparent; border-radius: 3px; background: none; cursor: pointer; }
     .ico:hover { border-color: #a9c3ef; background: #eaf1fd; }
-    .ico.stop { color: #c62b2b; font-weight: bold; }
-    .ico.refresh { color: #2f7d34; font-weight: bold; }
-    .ico.home { color: #2b6bc6; font-size: 14px; }
 
-    .tb { display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 7px;
+    .tb { display: inline-flex; align-items: center; gap: 5px; height: 24px; padding: 0 7px;
       border: 1px solid transparent; border-radius: 3px; background: none; font: inherit; color: #0a0a0a; cursor: pointer; }
     .tb:hover { border-color: #a9c3ef; background: #eaf1fd; }
-    .tb .mag { font-size: 12px; filter: grayscale(.2); }
     .tb .favimg { width: 15px; height: 15px; }
 
     /* Address */
