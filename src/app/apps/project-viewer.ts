@@ -140,7 +140,7 @@ export class ProjectViewer {
     if (!p.demoUrl) return;
     this.wm.open({
       type: 'browser',
-      title: `${p.name} — Internet Explorer`,
+      title: 'Internet Explorer',
       icon: 'ie',
       width: 900,
       height: 640,

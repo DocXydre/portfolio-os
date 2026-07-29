@@ -86,6 +86,12 @@ import { WindowService } from '../core/window.service';
       cursor: default;
     }
     .title-bar.inactive { background: var(--title-inactive); }
+    /* Titre sur une seule ligne : les titres longs ne débordent plus sur le menu. */
+    .title-bar-text {
+      flex: 1 1 auto; min-width: 0;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .title-bar-controls { flex: 0 0 auto; }
 
     .window-body {
       flex: 1 1 auto;

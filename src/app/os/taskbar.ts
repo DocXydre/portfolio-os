@@ -72,12 +72,18 @@ import { StartMenu } from './start-menu';
     .flag { width: 20px; height: 20px; }
 
     .tasks {
-      flex: 1; display: flex; align-items: center; gap: 4px;
-      padding: 0 6px; overflow: hidden;
+      flex: 1; min-width: 0; display: flex; align-items: center; gap: 4px;
+      padding: 0 6px;
+      /* Défilement horizontal au doigt quand il y a trop de fenêtres. */
+      overflow-x: auto; overflow-y: hidden;
+      -webkit-overflow-scrolling: touch; scrollbar-width: none;
+      overscroll-behavior-x: contain;
     }
+    .tasks::-webkit-scrollbar { display: none; }
     .task {
+      flex: 0 0 auto;
       display: flex; align-items: center; gap: 6px;
-      min-width: 130px; max-width: 170px; height: 24px;
+      min-width: 120px; max-width: 170px; height: 24px;
       padding: 0 8px;
       background: linear-gradient(to bottom, #4d90f0, #2f6fed);
       color: #fff; border: 1px solid #1b3fa0; border-radius: 3px;
