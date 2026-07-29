@@ -18,7 +18,7 @@
 
 - [x] **Personnaliser « À propos de moi »** — réécrit (alternance, polyvalent, hardware/bidouille, auto-hébergement, Japon) + rendu visible via une icône bureau (ta photo) en plus du menu Démarrer.
 - [x] **PushPile** — 5 visuels ajoutés depuis la présentation (langage culinaire, compilateur → arbre/TDS, exécution BSIM, table des tests, Gantt/Jira) + description enrichie.
-- [ ] **Décibulles** — encore sans visuel (bot Python). À voir : capture de l'alerte email reçue, ou du script en action.
+- [x] **Décibulles** — description enrichie avec la vraie technique (Selenium + geckodriver, lecture du DOM brut, alerte via API SMTP Brevo → iCloud/iPhone). Reste en texte seul (bot perso, code non conservé), ce qui est légitime.
 - [x] **Aperçu social (Open Graph)** — image `og.jpg` (carte avec ta photo, ton titre, l'URL, taskbar XP) + balises meta OG/Twitter. Preview soignée au partage LinkedIn/mail.
 - [x] **Favicon propre** — favicon aux couleurs du logo Windows XP (`favicon.ico` + `.png`).
 - [ ] **Test multi-navigateurs** — vérifier sur Chrome, Firefox, Edge (pas que Safari) : surtout les iframes IE, la vidéo, le rendu général.
