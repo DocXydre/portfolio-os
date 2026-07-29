@@ -40,12 +40,12 @@ import { FOLDERS } from '../data/projects';
       </button>
 
       <button class="icon" (dblclick)="openMe()">
-        <img class="glyph glyph-photo" src="icons/avatar.png" alt="" />
+        <img class="glyph" src="icons/about.png" alt="" />
         <span class="cap">À propos de moi</span>
       </button>
 
       <button class="icon" (dblclick)="openAbout()">
-        <img class="glyph" src="icons/about.png" alt="" />
+        <img class="glyph" src="icons/help.png" alt="" />
         <span class="cap">À propos du portfolio</span>
       </button>
     </div>
@@ -121,9 +121,9 @@ export class Desktop {
     });
   }
   openAbout(): void {
-    this.wm.open({ type: 'about', title: 'À propos du portfolio', icon: 'about', width: 500, height: 460, key: 'about' });
+    this.wm.open({ type: 'about', title: 'À propos du portfolio', icon: 'help', width: 560, height: 540, key: 'about' });
   }
   openMe(): void {
-    this.wm.open({ type: 'me', title: 'À propos de moi', icon: 'user', width: 740, height: 560, key: 'me' });
+    this.wm.open({ type: 'me', title: 'À propos de moi', icon: 'about', width: 740, height: 560, key: 'me' });
   }
 }

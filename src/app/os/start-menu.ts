@@ -19,7 +19,7 @@ import { FOLDERS } from '../data/projects';
       <div class="cols">
         <ul class="col left">
           <li><button (click)="about()">
-            <img src="icons/about.png" alt="" />
+            <img src="icons/help.png" alt="" />
             <span><b>À propos du portfolio</b><small>Comment ce site est fait</small></span>
           </button></li>
           <li class="sep"></li>
@@ -109,7 +109,7 @@ export class StartMenu {
     this.close.emit();
   }
   about(): void {
-    this.wm.open({ type: 'about', title: 'À propos du portfolio', icon: 'about', width: 500, height: 460, key: 'about' });
+    this.wm.open({ type: 'about', title: 'À propos du portfolio', icon: 'help', width: 560, height: 540, key: 'about' });
     this.close.emit();
   }
   /** Fenêtre "cachée" sur ma personne, ouverte depuis le bandeau profil. */

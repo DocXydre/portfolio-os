@@ -47,31 +47,74 @@ import { Ie } from './apps/ie';
                 />
               }
               @case ('about') {
-                <div class="about">
+                <div class="about doc">
                   <h1>À propos du portfolio</h1>
-                  <p class="role">Un portfolio qui se prend pour un OS</p>
+                  <p class="role">Comment ce site est fait</p>
+
+                  <h2>Le concept</h2>
                   <p>
-                    Ce site est conçu comme un système d'exploitation inspiré de Windows XP.
-                    Le bureau, les fenêtres déplaçables, l'explorateur de fichiers, la visionneuse
-                    de photos et l'écran de veille à bulles sont tous des composants faits main.
+                    Ce portfolio est un système d'exploitation façon <b>Windows XP</b>, entièrement
+                    recréé dans le navigateur : bureau, fenêtres déplaçables, barre des tâches, menu
+                    Démarrer, explorateur de fichiers, visionneuse de photos, lecteur PDF… tout est
+                    fait main. J'en reprends les codes (le thème « Luna ») sans copier au pixel près :
+                    c'est une version personnalisée, pas une reproduction exacte.
                   </p>
+                  <p>Trois raisons à ce choix :</p>
+                  <ul>
+                    <li><b>Sortir du portfolio générique.</b> Plutôt qu'une page qui défile, un
+                      environnement à explorer — plus marquant et mémorable pour un recruteur.</li>
+                    <li><b>Une référence personnelle.</b> Windows XP est le premier ordinateur que
+                      j'ai utilisé ; c'est un clin d'œil à mes débuts en informatique.</li>
+                    <li><b>L'ergonomie.</b> La métaphore du bureau et des fichiers est simple et
+                      intuitive : ranger mes projets en dossiers donne envie de fouiner plutôt que de
+                      lire une liste.</li>
+                  </ul>
+
+                  <h2>Sous le capot</h2>
                   <p>
-                    Côté technique : <b>Angular 20</b> en composants standalone et signals, sans
-                    framework d'interface — juste du SCSS et <b>XP.css</b> pour retrouver l'esprit
-                    Luna. Le tout est déployé automatiquement sur GitHub Pages.
+                    L'application est développée en <b>Angular 22</b> (composants standalone et
+                    <i>signals</i>), sans framework d'interface : juste du SCSS et <b>XP.css</b> pour
+                    l'esprit Luna. Les fenêtres, le gestionnaire de fenêtres, le système de fichiers
+                    virtuel, l'écran de veille à bulles et la séquence de démarrage sont tous des
+                    composants maison.
                   </p>
+
+                  <h2>L'hébergement</h2>
                   <p>
-                    J'ai développé ce portfolio avec l'aide de <b>Claude</b>, l'assistant IA
-                    d'Anthropic, comme binôme de programmation — de l'architecture jusqu'aux
-                    finitions.
+                    Ce site ne tourne pas chez un hébergeur classique : je l'héberge <b>moi-même</b>,
+                    sur un PC de 2008 que j'ai remis en route et que j'administre de A à Z. C'est la
+                    partie dont je suis le plus fier.
                   </p>
+                  <ul>
+                    <li><b>La machine :</b> un vieux PC (processeur Intel Atom, 2 Go de RAM) sous
+                      <b>Debian</b>, transformé en serveur.</li>
+                    <li><b>Serveur web :</b> <b>Caddy</b>, avec HTTPS automatique (certificats Let's
+                      Encrypt) et un vrai domaine, <b>thomasmathis.me</b>.</li>
+                    <li><b>Réseau :</b> la box étant en CGNAT, j'ai demandé une IPv4 « full-stack »
+                      pour être joignable depuis l'extérieur, avec réservation DHCP, pare-feu (ufw) et
+                      fail2ban.</li>
+                    <li><b>Accès distant sécurisé :</b> <b>Tailscale</b> (VPN) pour administrer et
+                      déployer le serveur d'où que je sois, sans exposer SSH sur Internet.</li>
+                    <li><b>Déploiement automatique :</b> un simple <code>git push</code> déclenche
+                      GitHub Actions, qui compile puis envoie la nouvelle version sur le serveur via
+                      Tailscale (avec un miroir sur GitHub Pages).</li>
+                    <li><b>Une contrainte assumée :</b> le CPU de 2008 ne fait pas tourner les
+                      runtimes récents (Bun, Node moderne). Certains projets dynamiques sont donc
+                      pré-rendus en statique pour rester hébergeables sur cette machine.</li>
+                  </ul>
+
+                  <h2>Un binôme IA</h2>
+                  <p>
+                    J'ai développé ce portfolio avec l'aide de <b>Claude</b> (l'assistant IA
+                    d'Anthropic) comme binôme de programmation, de l'architecture jusqu'aux finitions.
+                  </p>
+
                   <p class="hint">Astuce : tout n'est pas visible au premier coup d'œil. Fouinez un peu…</p>
                 </div>
               }
               @case ('me') {
                 <div class="about me">
                   <div class="me-head">
-                    <img class="me-ava" src="icons/avatar.png" alt="" />
                     <div>
                       <h1>Thomas Mathis</h1>
                       <p class="role">Développeur polyvalent · étudiant MIAGE · en recherche d'alternance</p>
@@ -145,6 +188,19 @@ import { Ie } from './apps/ie';
     .about p { margin: 0 0 12px; }
     .about b { color: var(--accent-deep); }
     .about .hint { color: #777; font-style: italic; font-size: 12px; }
+
+    /* Fiche documentaire à sections (À propos du portfolio) */
+    .about.doc h2 {
+      font-size: 14px; color: var(--accent-deep); margin: 18px 0 6px;
+      padding-bottom: 3px; border-bottom: 1px solid #dbe2ef;
+    }
+    .about.doc ul { margin: 4px 0 12px; padding-left: 20px; }
+    .about.doc li { margin: 0 0 6px; }
+    .about.doc code {
+      font-family: Consolas, "Courier New", monospace; font-size: 12px;
+      background: #eef1f7; border: 1px solid #dbe0ea; border-radius: 3px; padding: 0 4px;
+    }
+
     .me-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
     .me-ava { width: 60px; height: 60px; border-radius: 8px; border: 2px solid var(--accent); object-fit: cover; }
     .me-head h1 { font-size: 19px; }
