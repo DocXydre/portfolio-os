@@ -131,13 +131,14 @@ export const PROJECTS: Project[] = [
       'projects/europark-5.webp',
     ],
     demoUrl: 'https://europark.thomasmathis.me',
+    repo: 'https://github.com/DocXydre/ProjetParking_JBTM',
     link: undefined,
   },
   {
     id: 'loves-me-not',
     name: 'Mini-jeu « Loves me… loves me not »',
     folder: 'ecole',
-    year: '2024',
+    year: '2022',
     role: 'Développeur Front-End',
     context: 'Projet académique — L1 MIASHS',
     stack: ['HTML', 'CSS', 'JavaScript'],
@@ -153,6 +154,7 @@ export const PROJECTS: Project[] = [
       'projects/lovesme-2.webp',
     ],
     demoUrl: 'https://lovesme.thomasmathis.me/',
+    repo: 'https://github.com/DocXydre/ProjetwebL1',
     link: undefined,
   },
 ];
