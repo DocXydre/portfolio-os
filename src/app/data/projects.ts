@@ -92,6 +92,7 @@ export const PROJECTS: Project[] = [
       "Conception et développement complet d'un compilateur pour un langage de programmation inventé de toutes pièces, sur le thème culinaire : on y écrit une « recette » avec des mots-clés comme « mélanger », « ajouter », « cuit… », « mijoter » ou « dresser » — une syntaxe ludique par-dessus une vraie sémantique de langage.",
       "La réalisation technique a couvert l'analyse lexicale (JFlex), l'analyse syntaxique (CUP), la construction de l'Arbre Syntaxique Abstrait et de la Table des Symboles, jusqu'à la génération d'un code assembleur BETA pleinement exécutable sur le simulateur BSIM.",
       "En parallèle du développement, j'ai piloté une équipe de quatre étudiants en méthode Agile (Scrum) : gestion des sprints, répartition des tâches (PBS, WBS, diagramme de Gantt) via Jira, et coordination pour valider les 9 paliers de tests successifs.",
+      "À noter : le PBS présenté ici a volontairement été réalisé sous forme de carte mentale, à la demande de notre encadrant — ce n'est pas la forme arborescente stricte que prend habituellement un Product Breakdown Structure.",
     ],
     images: [
       'projects/pushpile-1.webp',
