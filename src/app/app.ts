@@ -74,21 +74,32 @@ import { Ie } from './apps/ie';
                     <img class="me-ava" src="icons/profile.png" alt="" />
                     <div>
                       <h1>Thomas Mathis</h1>
-                      <p class="role">Développeur web · étudiant MIAGE</p>
+                      <p class="role">Développeur polyvalent · étudiant MIAGE · en recherche d'alternance</p>
                     </div>
                   </div>
                   <p>
-                    Salut ! Je suis Thomas, développeur orienté front-end et étudiant en MIAGE à
-                    l'Université de Lorraine. J'aime autant soigner une interface que comprendre ce
-                    qui tourne derrière.
+                    Salut, moi c'est Thomas. Étudiant en MIAGE à l'Université de Lorraine et
+                    développeur plutôt touche-à-tout, je cherche une <b>alternance</b> où je pourrai
+                    autant coder que résoudre des problèmes concrets.
                   </p>
                   <p>
-                    En dehors du code : les voyages (le Japon m'a marqué), la culture rétro et les
-                    jeux Nintendo — ça se ressent sûrement dans ce portfolio.
+                    Front, back, un peu des deux : j'ai bossé aussi bien sur des interfaces (Angular,
+                    intégration soignée) que côté serveur (WordPress, PHP, Java, Python…). Ce qui me
+                    motive, c'est apprendre vite et livrer des choses qui marchent pour de vrai.
                   </p>
                   <p>
-                    Toujours partant pour un projet qui a du caractère ou une opportunité en
-                    alternance.
+                    J'aime comprendre ce qui se passe <b>sous le capot</b>, matériel compris : depuis
+                    le collège je monte mes propres PC, et je suis un peu le référent informatique de
+                    mon entourage. D'ailleurs, ce portfolio ne tourne pas n'importe où — je l'héberge
+                    moi-même sur un vieux PC de 2008 que j'ai remis en route et que j'administre de A à Z.
+                  </p>
+                  <p>
+                    En dehors du code, je suis parti <b>un mois seul au Japon</b>, un pays qui me fait
+                    rêver depuis petit, en quête d'aventure. Ça se ressent sûrement dans l'ambiance de
+                    ce portfolio.
+                  </p>
+                  <p>
+                    Si mon profil vous parle, écrivez-moi — je serais ravi d'échanger.
                   </p>
                   <p class="contact">
                     <a href="mailto:tmathis.dev&#64;gmail.com">Email</a> ·

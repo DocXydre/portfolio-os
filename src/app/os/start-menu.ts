@@ -107,7 +107,7 @@ export class StartMenu {
   }
   /** Fenêtre "cachée" sur ma personne, ouverte depuis le bandeau profil. */
   me(): void {
-    this.wm.open({ type: 'me', title: 'Thomas Mathis', icon: 'user', width: 460, height: 420, key: 'me' });
+    this.wm.open({ type: 'me', title: 'À propos de moi', icon: 'user', width: 480, height: 480, key: 'me' });
     this.close.emit();
   }
 }

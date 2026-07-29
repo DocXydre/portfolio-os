@@ -34,6 +34,11 @@ import { FOLDERS } from '../data/projects';
         <span class="cap">CV.pdf</span>
       </button>
 
+      <button class="icon" (dblclick)="openMe()">
+        <img class="glyph glyph-photo" src="icons/profile.png" alt="" />
+        <span class="cap">À propos de moi</span>
+      </button>
+
       <button class="icon" (dblclick)="openAbout()">
         <img class="glyph" src="icons/about.png" alt="" />
         <span class="cap">À propos du portfolio</span>
@@ -59,6 +64,11 @@ import { FOLDERS } from '../data/projects';
       width: 52px; height: 52px;
       image-rendering: -webkit-optimize-contrast;
       filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
+    }
+    .glyph-photo {
+      border-radius: 6px; object-fit: cover;
+      border: 2px solid #fff;
+      image-rendering: auto;
     }
     .cap {
       color: #fff; font-size: 12px; text-align: center; line-height: 1.3;
@@ -101,5 +111,8 @@ export class Desktop {
   }
   openAbout(): void {
     this.wm.open({ type: 'about', title: 'À propos du portfolio', icon: 'about', width: 500, height: 460, key: 'about' });
+  }
+  openMe(): void {
+    this.wm.open({ type: 'me', title: 'À propos de moi', icon: 'user', width: 480, height: 480, key: 'me' });
   }
 }
