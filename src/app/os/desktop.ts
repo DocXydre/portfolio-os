@@ -113,6 +113,6 @@ export class Desktop {
     this.wm.open({ type: 'about', title: 'À propos du portfolio', icon: 'about', width: 500, height: 460, key: 'about' });
   }
   openMe(): void {
-    this.wm.open({ type: 'me', title: 'À propos de moi', icon: 'user', width: 480, height: 480, key: 'me' });
+    this.wm.open({ type: 'me', title: 'À propos de moi', icon: 'user', width: 640, height: 700, key: 'me' });
   }
 }

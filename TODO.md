@@ -18,8 +18,8 @@
 
 - [x] **Personnaliser « À propos de moi »** — réécrit (alternance, polyvalent, hardware/bidouille, auto-hébergement, Japon) + rendu visible via une icône bureau (ta photo) en plus du menu Démarrer.
 - [ ] **PushPile & Décibulles** — les 2 seuls projets sans visuel. Au minimum : une capture d'écran ou un extrait de sortie, sinon ils paraissent vides à côté des autres. (PushPile : capture de la sortie du compilateur ; Décibulles : capture de l'alerte email / du script.)
-- [ ] **Aperçu social (Open Graph)** — une belle image de preview quand tu partages le lien sur LinkedIn / par mail. Aujourd'hui il n'y a que du texte. → générer une image OG (capture du bureau) + balises meta.
-- [ ] **Favicon propre** — mettre une vraie icône (drapeau Windows ou logo perso) au lieu du favicon par défaut.
+- [x] **Aperçu social (Open Graph)** — image `og.jpg` (carte avec ta photo, ton titre, l'URL, taskbar XP) + balises meta OG/Twitter. Preview soignée au partage LinkedIn/mail.
+- [x] **Favicon propre** — favicon aux couleurs du logo Windows XP (`favicon.ico` + `.png`).
 - [ ] **Test multi-navigateurs** — vérifier sur Chrome, Firefox, Edge (pas que Safari) : surtout les iframes IE, la vidéo, le rendu général.
 - [ ] **Passe mobile globale** — vérifier icônes, taskbar, fenêtres, menu Démarrer sur téléphone (pas juste la visionneuse). Décider si on veut à terme un shell mobile façon « iPhone 3G » (idée future).
 

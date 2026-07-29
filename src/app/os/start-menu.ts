@@ -107,7 +107,7 @@ export class StartMenu {
   }
   /** Fenêtre "cachée" sur ma personne, ouverte depuis le bandeau profil. */
   me(): void {
-    this.wm.open({ type: 'me', title: 'À propos de moi', icon: 'user', width: 480, height: 480, key: 'me' });
+    this.wm.open({ type: 'me', title: 'À propos de moi', icon: 'user', width: 640, height: 700, key: 'me' });
     this.close.emit();
   }
 }
