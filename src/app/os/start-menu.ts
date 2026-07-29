@@ -12,7 +12,7 @@ import { FOLDERS } from '../data/projects';
   template: `
     <div class="menu" (pointerdown)="$event.stopPropagation()">
       <header class="user" (click)="me()" title="Voir mon profil">
-        <img class="avatar" src="icons/profile.png" alt="Thomas Mathis" />
+        <img class="avatar" src="icons/avatar.png" alt="Thomas Mathis" />
         <span class="name">Thomas Mathis</span>
       </header>
 
@@ -31,9 +31,15 @@ import { FOLDERS } from '../data/projects';
           }
         </ul>
         <ul class="col right">
-          <li><a href="mailto:tmathis.dev@gmail.com">Me contacter</a></li>
-          <li><a href="https://github.com/DocXydre" target="_blank" rel="noopener">GitHub</a></li>
-          <li><a href="https://www.linkedin.com/in/mathisthomas/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="mailto:tmathis.dev@gmail.com">
+            <img class="logo" src="icons/mail.svg" alt="" /><span>Me contacter</span>
+          </a></li>
+          <li><a href="https://github.com/DocXydre" target="_blank" rel="noopener">
+            <img class="logo" src="icons/github.svg" alt="" /><span>GitHub</span>
+          </a></li>
+          <li><a href="https://www.linkedin.com/in/mathisthomas/" target="_blank" rel="noopener">
+            <img class="logo" src="icons/linkedin.svg" alt="" /><span>LinkedIn</span>
+          </a></li>
         </ul>
       </div>
 
@@ -76,6 +82,7 @@ import { FOLDERS } from '../data/projects';
       cursor: pointer; text-decoration: none;
     }
     .col button img { width: 24px; height: 24px; flex: 0 0 auto; }
+    .col a .logo { width: 18px; height: 18px; flex: 0 0 auto; }
     .col b { display: block; }
     .col small { color: #555; }
     .col button:hover, .col a:hover { background: #2f6fed; color: #fff; }
@@ -107,7 +114,7 @@ export class StartMenu {
   }
   /** Fenêtre "cachée" sur ma personne, ouverte depuis le bandeau profil. */
   me(): void {
-    this.wm.open({ type: 'me', title: 'À propos de moi', icon: 'user', width: 640, height: 520, key: 'me' });
+    this.wm.open({ type: 'me', title: 'À propos de moi', icon: 'user', width: 740, height: 560, key: 'me' });
     this.close.emit();
   }
 }

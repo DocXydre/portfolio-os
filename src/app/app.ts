@@ -71,45 +71,55 @@ import { Ie } from './apps/ie';
               @case ('me') {
                 <div class="about me">
                   <div class="me-head">
-                    <img class="me-ava" src="icons/profile.png" alt="" />
+                    <img class="me-ava" src="icons/avatar.png" alt="" />
                     <div>
                       <h1>Thomas Mathis</h1>
                       <p class="role">Développeur polyvalent · étudiant MIAGE · en recherche d'alternance</p>
                     </div>
                   </div>
-                  <p>
-                    Bonjour, et bienvenue sur mon profil ! Étudiant en MIAGE à l'Université de
-                    Lorraine et développeur polyvalent, je suis à la recherche d'une <b>alternance</b>
-                    où je pourrai autant coder que participer à la conduite d'un projet.
-                  </p>
-                  <p>
-                    Je suis à l'aise aussi bien sur le front (Angular, intégration soignée) que côté
-                    serveur (WordPress, PHP, Java, Python…), avec une exigence : livrer des choses qui
-                    marchent pour de vrai. J'ai aussi une vraie fibre <b>gestion de projet</b> — j'ai
-                    piloté une équipe en méthode <b>Scrum</b> (sprints, répartition des tâches sur
-                    <b>Jira</b>) — et cette double casquette technique / organisation me tient à cœur.
-                  </p>
-                  <p>
-                    J'aime comprendre ce qui se passe <b>sous le capot</b> : de l'assembleur (le
-                    langage BETA) à l'architecture des ordinateurs, en passant par les dernières
-                    nouveautés techno que je suis de près. Depuis le collège, je monte mes propres PC
-                    et je suis un peu le référent informatique de mon entourage. D'ailleurs, ce
-                    portfolio ne tourne pas n'importe où : je l'héberge moi-même sur un vieux PC de
-                    2008 que j'ai remis en route et que j'administre de A à Z.
-                  </p>
-                  <p>
-                    En dehors du code, je suis avant tout <b>très curieux</b> : j'aime apprendre,
-                    découvrir, voir des films — tout ce qui nourrit ma culture. C'est cette curiosité
-                    qui me pousse à voyager, et qui m'a mené <b>un mois seul au Japon</b>, en quête
-                    d'aventure et d'un pays qui me fait rêver depuis petit.
-                  </p>
-                  <p>
-                    Si mon profil vous parle, n'hésitez pas à me contacter — je serais ravi d'échanger.
-                  </p>
+
+                  <div class="me-layout">
+                    <figure class="me-photo">
+                      <img src="me-portrait.webp" alt="Thomas Mathis à Montmartre, Paris" />
+                    </figure>
+
+                    <div class="me-text">
+                      <p>
+                        Bonjour, et bienvenue sur mon profil ! Étudiant en MIAGE à l'Université de
+                        Lorraine et développeur polyvalent, je suis à la recherche d'une <b>alternance</b>
+                        où je pourrai autant coder que participer à la conduite d'un projet.
+                      </p>
+                      <p>
+                        Je suis à l'aise aussi bien sur le front (Angular, intégration soignée) que côté
+                        serveur (WordPress, PHP, Java, Python…), avec une exigence : livrer des choses qui
+                        marchent pour de vrai. J'ai aussi une vraie fibre <b>gestion de projet</b> — j'ai
+                        piloté une équipe en méthode <b>Scrum</b> (sprints, répartition des tâches sur
+                        <b>Jira</b>) — et cette double casquette technique / organisation me tient à cœur.
+                      </p>
+                      <p>
+                        J'aime comprendre ce qui se passe <b>sous le capot</b> : de l'assembleur (le
+                        langage BETA) à l'architecture des ordinateurs, en passant par les dernières
+                        nouveautés techno que je suis de près. Depuis le collège, je monte mes propres PC
+                        et je suis un peu le référent informatique de mon entourage. D'ailleurs, ce
+                        portfolio ne tourne pas n'importe où : je l'héberge moi-même sur un vieux PC de
+                        2008 que j'ai remis en route et que j'administre de A à Z.
+                      </p>
+                      <p>
+                        En dehors du code, je suis avant tout <b>très curieux</b> : j'aime apprendre,
+                        découvrir, voir des films — tout ce qui nourrit ma culture. C'est cette curiosité
+                        qui me pousse à voyager, et qui m'a mené <b>un mois seul au Japon</b>, en quête
+                        d'aventure et d'un pays qui me fait rêver depuis petit.
+                      </p>
+                      <p>
+                        Si mon profil vous parle, n'hésitez pas à me contacter — je serais ravi d'échanger.
+                      </p>
+                    </div>
+                  </div>
+
                   <p class="contact">
-                    <a href="mailto:tmathis.dev&#64;gmail.com">Email</a> ·
-                    <a href="https://github.com/DocXydre" target="_blank" rel="noopener">GitHub</a> ·
-                    <a href="https://www.linkedin.com/in/mathisthomas/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="mailto:tmathis.dev&#64;gmail.com"><img class="logo" src="icons/mail.svg" alt="" /> Email</a>
+                    <a href="https://github.com/DocXydre" target="_blank" rel="noopener"><img class="logo" src="icons/github.svg" alt="" /> GitHub</a>
+                    <a href="https://www.linkedin.com/in/mathisthomas/" target="_blank" rel="noopener"><img class="logo" src="icons/linkedin.svg" alt="" /> LinkedIn</a>
                   </p>
                 </div>
               }
@@ -135,10 +145,32 @@ import { Ie } from './apps/ie';
     .about p { margin: 0 0 12px; }
     .about b { color: var(--accent-deep); }
     .about .hint { color: #777; font-style: italic; font-size: 12px; }
-    .about .contact a { color: var(--accent); font-weight: bold; }
-    .me-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+    .me-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
     .me-ava { width: 60px; height: 60px; border-radius: 8px; border: 2px solid var(--accent); object-fit: cover; }
     .me-head h1 { font-size: 19px; }
+
+    /* Disposition : grande photo à gauche, texte à droite */
+    .me-layout { display: flex; gap: 18px; align-items: flex-start; }
+    .me-photo { margin: 0; flex: 0 0 230px; }
+    .me-photo img {
+      width: 100%; border-radius: 8px; display: block;
+      border: 1px solid #b9c6de; box-shadow: 0 3px 12px rgba(20,40,80,0.22);
+    }
+    .me-text { flex: 1; min-width: 0; }
+    .me-text p:last-child { margin-bottom: 0; }
+
+    .about .contact { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 16px;
+      padding-top: 12px; border-top: 1px solid #e2e6ef; }
+    .about .contact a { display: inline-flex; align-items: center; gap: 7px;
+      color: var(--accent); font-weight: bold; text-decoration: none; }
+    .about .contact a:hover { text-decoration: underline; }
+    .about .contact .logo { width: 18px; height: 18px; }
+
+    /* Écrans étroits : la photo repasse au-dessus du texte */
+    @media (max-width: 560px) {
+      .me-layout { flex-direction: column; }
+      .me-photo { flex: none; width: 60%; max-width: 240px; align-self: center; }
+    }
   `],
 })
 export class App {

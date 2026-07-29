@@ -68,7 +68,7 @@ const BIOS_LINES = [
             <div class="welcome">
               <div class="bar top"></div>
               <div class="hello">
-                <img class="ava" src="icons/profile.png" alt="" />
+                <img class="ava" src="icons/avatar.png" alt="" />
                 <div class="txt"><span class="big">Bienvenue</span><span class="sub">Thomas Mathis</span></div>
               </div>
               <div class="bar bottom"></div>
