@@ -90,6 +90,8 @@ export interface Project {
   link?: string;
   /** Repo public, si il existe. */
   repo?: string;
+  /** Lien vers la maquette Figma, si elle existe. */
+  figma?: string;
   /** URL du projet en live, à ouvrir dans la fenêtre Internet Explorer. */
   demoUrl?: string;
 }

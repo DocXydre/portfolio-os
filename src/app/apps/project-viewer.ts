@@ -25,11 +25,12 @@ import { projectById } from '../data/projects';
             @for (t of p.stack; track t) { <li>{{ t }}</li> }
           </ul>
 
-          @if (p.link || p.repo) {
+          @if (p.link || p.repo || p.figma) {
             <div class="meta-head">Liens</div>
             <div class="links">
               @if (p.link) { <a [href]="p.link" target="_blank" rel="noopener">Voir la démo →</a> }
               @if (p.repo) { <a [href]="p.repo" target="_blank" rel="noopener">Code source →</a> }
+              @if (p.figma) { <a [href]="p.figma" target="_blank" rel="noopener">Maquette Figma →</a> }
             </div>
           } @else {
             <p class="nolink">Projet non public / usage local</p>

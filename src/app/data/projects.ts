@@ -27,6 +27,7 @@ export const PROJECTS: Project[] = [
       "Conception et développement d'une plateforme interne sur mesure pour l'équipe du site d'actualité Vosges Info. L'outil centralise, soumet et suit des demandes de publication spécifiques (bannières, popups, etc.).",
       "L'objectif était de remplacer un formulaire existant peu intuitif qui générait des erreurs de saisie. J'ai conçu l'interface et réalisé l'intégration : élaboration des maquettes, restructuration du formulaire en sections distinctes, et affichage des demandes en \"Bento design\".",
       "La nouvelle interface limite les erreurs grâce à une ergonomie repensée et intègre un système de suivi des statuts clair et réactif.",
+      "Côté finition, l'environnement de développement (via Laravel Mix) exposait le rendu en local sur le réseau : je pouvais l'ouvrir directement depuis mon téléphone et ajuster le responsive en conditions réelles, sans souci.",
     ],
     images: [
       'projects/vosges-1.webp',
@@ -36,6 +37,7 @@ export const PROJECTS: Project[] = [
       'projects/vosges-5.webp',
     ],
     link: undefined,
+    figma: 'https://www.figma.com/design/pSmPCC5WJnbmNNSu72wy55/Formulaire-Vosges-Infos?t=BCpUqu8NLA8qOnzi-1',
   },
   {
     id: 'portfolio-ebauche',
@@ -50,6 +52,7 @@ export const PROJECTS: Project[] = [
       "Dans le prolongement de ma formation interne sur l'écosystème WordPress, j'ai initié le développement de mon propre portfolio interactif, conçu et réalisé en totale autonomie.",
       "J'ai élaboré les maquettes en \"Bento design\", puis structuré le back-end avec des Custom Post Types dédiés pour gérer dynamiquement l'affichage des formations, expériences et projets.",
       "Le projet a abouti à un site techniquement opérationnel : architecture MVC fonctionnelle, base de données configurée pour une saisie simplifiée via Gutenberg, intégration graphique réalisée. Une ébauche aboutie côté technique, mise en pause pour un autre projet.",
+      "L'environnement de développement (assets compilés avec Laravel Mix) exposait le rendu en local sur le réseau : je pouvais l'ouvrir directement depuis mon téléphone et peaufiner le responsive en conditions réelles, sans souci.",
     ],
     images: [
       'projects/portfolio-1.webp',
@@ -61,6 +64,7 @@ export const PROJECTS: Project[] = [
       'projects/portfolio-7.webp',
     ],
     link: undefined,
+    figma: 'https://www.figma.com/design/aYGvuhs8usYX9DWtr6TAYU/Portfolio?node-id=0-1&t=BCpUqu8NLA8qOnzi-1',
   },
   {
     id: 'decibulles-bot',
