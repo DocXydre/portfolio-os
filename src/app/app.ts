@@ -78,28 +78,33 @@ import { Ie } from './apps/ie';
                     </div>
                   </div>
                   <p>
-                    Salut, moi c'est Thomas. Étudiant en MIAGE à l'Université de Lorraine et
-                    développeur plutôt touche-à-tout, je cherche une <b>alternance</b> où je pourrai
-                    autant coder que résoudre des problèmes concrets.
+                    Bonjour, et bienvenue sur mon profil ! Étudiant en MIAGE à l'Université de
+                    Lorraine et développeur polyvalent, je suis à la recherche d'une <b>alternance</b>
+                    où je pourrai autant coder que participer à la conduite d'un projet.
                   </p>
                   <p>
-                    Front, back, un peu des deux : j'ai bossé aussi bien sur des interfaces (Angular,
-                    intégration soignée) que côté serveur (WordPress, PHP, Java, Python…). Ce qui me
-                    motive, c'est apprendre vite et livrer des choses qui marchent pour de vrai.
+                    Je suis à l'aise aussi bien sur le front (Angular, intégration soignée) que côté
+                    serveur (WordPress, PHP, Java, Python…), avec une exigence : livrer des choses qui
+                    marchent pour de vrai. J'ai aussi une vraie fibre <b>gestion de projet</b> — j'ai
+                    piloté une équipe en méthode <b>Scrum</b> (sprints, répartition des tâches sur
+                    <b>Jira</b>) — et cette double casquette technique / organisation me tient à cœur.
                   </p>
                   <p>
-                    J'aime comprendre ce qui se passe <b>sous le capot</b>, matériel compris : depuis
-                    le collège je monte mes propres PC, et je suis un peu le référent informatique de
-                    mon entourage. D'ailleurs, ce portfolio ne tourne pas n'importe où — je l'héberge
-                    moi-même sur un vieux PC de 2008 que j'ai remis en route et que j'administre de A à Z.
+                    J'aime comprendre ce qui se passe <b>sous le capot</b> : de l'assembleur (le
+                    langage BETA) à l'architecture des ordinateurs, en passant par les dernières
+                    nouveautés techno que je suis de près. Depuis le collège, je monte mes propres PC
+                    et je suis un peu le référent informatique de mon entourage. D'ailleurs, ce
+                    portfolio ne tourne pas n'importe où : je l'héberge moi-même sur un vieux PC de
+                    2008 que j'ai remis en route et que j'administre de A à Z.
                   </p>
                   <p>
-                    En dehors du code, je suis parti <b>un mois seul au Japon</b>, un pays qui me fait
-                    rêver depuis petit, en quête d'aventure. Ça se ressent sûrement dans l'ambiance de
-                    ce portfolio.
+                    En dehors du code, je suis avant tout <b>très curieux</b> : j'aime apprendre,
+                    découvrir, voir des films — tout ce qui nourrit ma culture. C'est cette curiosité
+                    qui me pousse à voyager, et qui m'a mené <b>un mois seul au Japon</b>, en quête
+                    d'aventure et d'un pays qui me fait rêver depuis petit.
                   </p>
                   <p>
-                    Si mon profil vous parle, écrivez-moi — je serais ravi d'échanger.
+                    Si mon profil vous parle, n'hésitez pas à me contacter — je serais ravi d'échanger.
                   </p>
                   <p class="contact">
                     <a href="mailto:tmathis.dev&#64;gmail.com">Email</a> ·
