@@ -139,7 +139,7 @@ export const PROJECTS: Project[] = [
       'projects/lovesme-1.webp',
       'projects/lovesme-2.webp',
     ],
-    demoUrl: 'https://lovesme.thomasmathis.me/ds.html',
+    demoUrl: 'https://lovesme.thomasmathis.me/',
     link: undefined,
   },
 ];
