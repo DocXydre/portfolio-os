@@ -89,11 +89,17 @@ export const PROJECTS: Project[] = [
     stack: ['Java 17', 'Maven', 'JFlex', 'CUP', 'Assembleur BETA (BSIM)', 'Git', 'Jira'],
     summary: "Compilateur complet pour un langage inventé sur le thème culinaire, du lexer à la génération de code.",
     description: [
-      "Conception et développement complet d'un compilateur pour un langage de programmation inventé de toutes pièces, axé sur le vocabulaire culinaire.",
-      "La réalisation technique a couvert l'analyse lexicale (JFlex), l'analyse syntaxique (CUP), la construction de l'Arbre Syntaxique Abstrait et de la Table des Symboles, jusqu'à la génération d'un code assembleur pleinement exécutable.",
-      "En parallèle du développement, j'ai piloté une équipe de quatre étudiants en méthode Agile (Scrum) : gestion des sprints, répartition des tâches (PBS, WBS, Gantt) via Jira, et coordination pour valider les 9 paliers de tests successifs.",
+      "Conception et développement complet d'un compilateur pour un langage de programmation inventé de toutes pièces, sur le thème culinaire : on y écrit une « recette » avec des mots-clés comme « mélanger », « ajouter », « cuit… », « mijoter » ou « dresser » — une syntaxe ludique par-dessus une vraie sémantique de langage.",
+      "La réalisation technique a couvert l'analyse lexicale (JFlex), l'analyse syntaxique (CUP), la construction de l'Arbre Syntaxique Abstrait et de la Table des Symboles, jusqu'à la génération d'un code assembleur BETA pleinement exécutable sur le simulateur BSIM.",
+      "En parallèle du développement, j'ai piloté une équipe de quatre étudiants en méthode Agile (Scrum) : gestion des sprints, répartition des tâches (PBS, WBS, diagramme de Gantt) via Jira, et coordination pour valider les 9 paliers de tests successifs.",
     ],
-    images: [],
+    images: [
+      'projects/pushpile-1.webp',
+      'projects/pushpile-2.webp',
+      'projects/pushpile-3.webp',
+      'projects/pushpile-4.webp',
+      'projects/pushpile-5.webp',
+    ],
     link: undefined,
   },
   {
