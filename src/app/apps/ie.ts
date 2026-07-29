@@ -129,6 +129,7 @@ const SITES: Bookmark[] = [
             title="Site"
             (load)="loading.set(false)"
             referrerpolicy="no-referrer"
+            allow="autoplay; fullscreen"
           ></iframe>
         }
       </div>
@@ -149,27 +150,28 @@ const SITES: Bookmark[] = [
     .menubar .m:first-letter { text-decoration: underline; }
 
     /* Toolbar */
-    .toolbar { display: flex; align-items: center; gap: 2px; padding: 3px 6px;
+    .toolbar { display: flex; align-items: center; gap: 2px; padding: 2px 6px;
       background: linear-gradient(to bottom, #fbfbf7 0%, #e9e6db 100%); border-bottom: 1px solid #cfcabd; }
-    .toolbar .sep { width: 1px; height: 18px; background: #cfcabd; margin: 0 4px; }
-    .tbico { width: 18px; height: 18px; flex: 0 0 auto; }
+    .toolbar .sep { width: 1px; height: 16px; background: #cfcabd; margin: 0 4px; }
+    .tbico { width: 16px; height: 16px; flex: 0 0 auto; }
 
-    .nav { display: inline-flex; align-items: center; gap: 5px; height: 24px; padding: 0 8px;
+    /* Boutons dimensionnés à la taille du logo + un petit padding. */
+    .nav { display: inline-flex; align-items: center; gap: 4px; height: 20px; padding: 0 6px;
       border: 1px solid transparent; border-radius: 3px; background: none; font: inherit; color: #0a0a0a; cursor: pointer; }
     .nav:hover:not(:disabled) { border-color: #a9c3ef; background: #eaf1fd; }
     .nav:disabled { color: #9a988f; cursor: default; }
     .nav:disabled .tbico { filter: grayscale(1); opacity: .45; }
 
-    /* Boutons icône carrés, compacts */
-    .ico { width: 24px; height: 24px; padding: 0; flex: 0 0 auto;
+    /* Boutons icône carrés, juste le logo + 2px de padding */
+    .ico { width: 20px; height: 20px; padding: 0; flex: 0 0 auto;
       display: inline-flex; align-items: center; justify-content: center;
       border: 1px solid transparent; border-radius: 3px; background: none; cursor: pointer; }
     .ico:hover { border-color: #a9c3ef; background: #eaf1fd; }
 
-    .tb { display: inline-flex; align-items: center; gap: 5px; height: 24px; padding: 0 7px;
+    .tb { display: inline-flex; align-items: center; gap: 4px; height: 20px; padding: 0 6px;
       border: 1px solid transparent; border-radius: 3px; background: none; font: inherit; color: #0a0a0a; cursor: pointer; }
     .tb:hover { border-color: #a9c3ef; background: #eaf1fd; }
-    .tb .favimg { width: 15px; height: 15px; }
+    .tb .favimg { width: 14px; height: 14px; }
 
     /* Address */
     .address { display: flex; align-items: center; gap: 6px; padding: 3px 8px;
@@ -229,6 +231,18 @@ const SITES: Bookmark[] = [
       background: #f6f5ee; border-top: 1px solid #d6d2c6; color: #444; }
     .statusbar .zone { display: inline-flex; align-items: center; gap: 5px; border-left: 1px solid #cfcabd; padding-left: 10px; }
     .statusbar .zone img { width: 13px; height: 13px; }
+
+    /* Mobile : chrome plus fin pour laisser la place au site. */
+    @media (max-width: 640px) {
+      .ie { font-size: 11px; }
+      .menubar { gap: 9px; padding: 1px 6px; }
+      .toolbar { padding: 1px 4px; gap: 1px; }
+      .nav, .tb { height: 20px; padding: 0 5px; }
+      .ico { width: 20px; height: 20px; }
+      .tbico { width: 15px; height: 15px; }
+      .address { padding: 2px 6px; }
+      .address .go { padding: 2px 7px; }
+    }
   `],
 })
 export class Ie {

@@ -182,7 +182,7 @@ import { Ie } from './apps/ie';
       width: 100%; height: 100%; object-fit: cover;
       z-index: 0; pointer-events: none; user-select: none;
     }
-    .about { padding: 20px 24px; line-height: 1.6; overflow: auto; height: 100%; }
+    .about { padding: 20px 24px 34px; line-height: 1.6; overflow: auto; height: 100%; }
     .about h1 { margin: 0; color: var(--accent-deep); font-size: 20px; }
     .about .role { margin: 2px 0 14px; color: #555; font-weight: bold; }
     .about p { margin: 0 0 12px; }

@@ -74,6 +74,9 @@ import { WindowService } from '../core/window.service';
       top: 0 !important;
       width: 100vw !important;
       height: calc(100vh - var(--taskbar-h)) !important;
+      /* dvh : tient compte de la barre du navigateur mobile pour que le contenu
+         ne finisse pas caché sous la barre des tâches. */
+      height: calc(100dvh - var(--taskbar-h)) !important;
     }
 
     /* On surcharge la barre de titre XP.css avec nos tokens de marque. */
