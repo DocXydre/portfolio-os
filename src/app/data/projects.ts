@@ -95,12 +95,13 @@ export const PROJECTS: Project[] = [
       "À noter : le PBS présenté ici a volontairement été réalisé sous forme de carte mentale, à la demande de notre encadrant — ce n'est pas la forme arborescente stricte que prend habituellement un Product Breakdown Structure.",
     ],
     images: [
-      'projects/pushpile-1.webp',
-      'projects/pushpile-2.webp',
-      'projects/pushpile-3.webp',
-      'projects/pushpile-4.webp',
-      'projects/pushpile-5.webp',
+      'projects/pushpile-code.webp',
+      'projects/pushpile-terminal.webp',
+      'projects/pushpile-bsim.webp',
+      'projects/pushpile-gantt.webp',
+      'projects/pushpile-pbs.webp',
     ],
+    repo: 'https://github.com/DocXydre/PushPile',
     link: undefined,
   },
   {
