@@ -1,15 +1,13 @@
-name: Deploy to self-hosted server
+name: Deploy to self-hosted server (via Tailscale)
 
-# Déploiement "depuis n'importe où" : tu fais git push, GitHub compile,
-# puis pousse le site déjà buildé sur le serveur (Atom) en SSH via rsync.
-# Le vieux PC ne compile jamais.
+# git push sur main → GitHub compile → rejoint ton réseau Tailscale →
+# pousse le site sur ton serveur (l'Atom) en SSH. Le SSH n'est jamais exposé
+# sur Internet : GitHub y accède uniquement par le réseau privé Tailscale.
 
-# Manuel pour l'instant (onglet Actions → Run workflow). Quand le serveur et les
-# secrets sont prêts, décommente le bloc "push" pour déployer à chaque git push.
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
-  # push:
-  #   branches: [main]
 
 concurrency:
   group: selfhost
@@ -31,16 +29,21 @@ jobs:
       # Site servi à la racine du domaine → base-href /
       - run: npm run build -- --base-href /
 
+      # Rejoint ton réseau Tailscale (nœud éphémère, retiré en fin de job)
+      - name: Connect to Tailscale
+        uses: tailscale/github-action@v3
+        with:
+          authkey: ${{ secrets.TS_AUTHKEY }}
+
       - name: Configurer la clé SSH
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_deploy
           chmod 600 ~/.ssh/id_deploy
-          ssh-keyscan -p "${{ secrets.DEPLOY_PORT }}" -H "${{ secrets.DEPLOY_HOST }}" >> ~/.ssh/known_hosts
 
-      - name: Déployer (rsync)
+      - name: Déployer (rsync via Tailscale)
         run: |
           rsync -avz --delete --chmod=D755,F644 \
-            -e "ssh -p ${{ secrets.DEPLOY_PORT }} -i ~/.ssh/id_deploy" \
+            -e "ssh -i ~/.ssh/id_deploy -o StrictHostKeyChecking=accept-new" \
             dist/portfolio-windowsxp/browser/ \
             "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/"
