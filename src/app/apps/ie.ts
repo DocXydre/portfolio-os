@@ -145,12 +145,12 @@ const SITES: Bookmark[] = [
     .ie { display: flex; flex-direction: column; height: 100%; background: #fff; font-size: 12px; font-family: Tahoma, sans-serif; }
 
     /* Menu */
-    .menubar { display: flex; align-items: center; gap: 14px; padding: 2px 8px; background: #f6f5ee; border-bottom: 1px solid #d6d2c6; }
+    .menubar { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; padding: 2px 8px; background: #f6f5ee; border-bottom: 1px solid #d6d2c6; }
     .menubar .m { color: #111; }
     .menubar .m:first-letter { text-decoration: underline; }
 
     /* Toolbar */
-    .toolbar { display: flex; align-items: center; gap: 2px; padding: 2px 6px;
+    .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 2px; row-gap: 3px; padding: 3px 6px;
       background: linear-gradient(to bottom, #fbfbf7 0%, #e9e6db 100%); border-bottom: 1px solid #cfcabd; }
     .toolbar .sep { width: 1px; height: 14px; background: #cfcabd; margin: 0 4px; }
     .tbico { width: 14px; height: 14px; flex: 0 0 auto; }
@@ -174,10 +174,10 @@ const SITES: Bookmark[] = [
     .tb .favimg { width: 13px; height: 13px; }
 
     /* Address */
-    .address { display: flex; align-items: center; gap: 6px; padding: 3px 8px;
+    .address { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; row-gap: 4px; padding: 3px 8px;
       background: #f6f5ee; border-top: 1px solid #fff; border-bottom: 1px solid #d6d2c6; }
     .address .lbl { color: #6a6a5f; }
-    .address .box { flex: 1; display: flex; align-items: center; gap: 5px; background: #fff;
+    .address .box { flex: 1 1 150px; min-width: 120px; display: flex; align-items: center; gap: 5px; background: #fff;
       border: 1px solid #7f9db9; border-radius: 2px; padding: 1px 4px; box-shadow: inset 1px 1px 1px rgba(0,0,0,.12); overflow: hidden; }
     .address .box img { width: 16px; height: 16px; flex: 0 0 auto; }
     .address .url { flex: 1; border: none; outline: none; font: inherit; color: #111; background: none; min-width: 0; }
@@ -242,6 +242,7 @@ const SITES: Bookmark[] = [
       .tbico { width: 14px; height: 14px; }
       .address { padding: 2px 6px; }
       .address .go { padding: 1px 7px; }
+      .address .links { display: none; }   /* décoratif : on gagne de la place */
     }
   `],
 })
