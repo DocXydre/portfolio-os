@@ -17,7 +17,7 @@ import {
    Bulles translucides irisées qui flottent et rebondissent sur les bords.
    ------------------------------------------------------------------ */
 
-const IDLE_MS = 30_000;
+const IDLE_MS = 10_000;
 
 interface Bubble {
   x: number;
