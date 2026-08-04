@@ -2,10 +2,13 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <title>Thomas Mathis — Portfolio OS</title>
+  <title>Thomas Mathis — Développeur MIAGE en recherche d'alternance | Portfolio</title>
   <base href="/" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Portfolio interactif de Thomas Mathis, développeur polyvalent en recherche d'alternance — présenté comme un bureau Windows XP, avec des projets qui tournent en live." />
+  <meta name="description" content="Portfolio de Thomas Mathis, développeur polyvalent (Angular, WordPress, Java, Python) et étudiant MIAGE en recherche d'alternance. Présenté comme un bureau Windows XP, avec des projets qui tournent en live." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Thomas Mathis" />
+  <link rel="canonical" href="https://thomasmathis.me/" />
 
   <!-- Open Graph (aperçu au partage : LinkedIn, messageries, etc.) -->
   <meta property="og:type" content="website" />
@@ -27,8 +30,58 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
   <meta name="theme-color" content="#245edb" />
+
+  <!-- Données structurées : aide les moteurs à comprendre qui tu es. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Thomas Mathis",
+    "url": "https://thomasmathis.me/",
+    "jobTitle": "Développeur polyvalent · étudiant MIAGE",
+    "description": "Développeur polyvalent (Angular, WordPress, Java, Python) et étudiant MIAGE à l'Université de Lorraine, en recherche d'alternance.",
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Université de Lorraine" },
+    "knowsAbout": ["Angular", "TypeScript", "JavaScript", "WordPress", "PHP", "Java", "Python", "Gestion de projet Agile", "Scrum"],
+    "sameAs": [
+      "https://github.com/DocXydre",
+      "https://www.linkedin.com/in/mathisthomas/"
+    ],
+    "email": "tmathis.dev@gmail.com"
+  }
+  </script>
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+    <!-- Contenu de repli visible avant le chargement de l'app Angular.
+         Il est remplacé par le bureau une fois le JavaScript exécuté, mais
+         reste lu par les moteurs de recherche et les aperçus sans JS (SEO). -->
+    <main style="max-width:720px;margin:0 auto;padding:32px 20px;font-family:Tahoma,Arial,sans-serif;color:#1a1a1a;line-height:1.6">
+      <h1>Thomas Mathis — Développeur polyvalent en recherche d'alternance</h1>
+      <p>Étudiant en <strong>MIAGE</strong> à l'Université de Lorraine et développeur polyvalent,
+        je cherche une <strong>alternance</strong> où coder et participer à la conduite de projet.
+        À l'aise sur le front (<strong>Angular</strong>, intégration soignée) comme côté serveur
+        (<strong>WordPress</strong>, <strong>PHP</strong>, <strong>Java</strong>,
+        <strong>Python</strong>), avec une vraie fibre gestion de projet Agile (Scrum, Jira).</p>
+
+      <h2>Projets</h2>
+      <ul>
+        <li><a href="https://lovesme.thomasmathis.me/">Loves me… loves me not</a> —
+          mini-jeu recréé dans une interface Nintendo DS (HTML / CSS / JS).</li>
+        <li><a href="https://europark.thomasmathis.me">EuroPark</a> —
+          application de gestion de parkings en Europe (TypeScript / Hono).</li>
+        <li><a href="https://github.com/DocXydre/PushPile">Compilateur PushPile</a> —
+          compilateur complet d'un langage inventé (Java, JFlex, CUP, assembleur BETA).</li>
+      </ul>
+
+      <h2>Me contacter</h2>
+      <p>
+        <a href="mailto:tmathis.dev&#64;gmail.com">Email</a> ·
+        <a href="https://github.com/DocXydre">GitHub</a> ·
+        <a href="https://www.linkedin.com/in/mathisthomas/">LinkedIn</a>
+      </p>
+
+      <p><noscript>Ce portfolio interactif (façon bureau Windows XP) nécessite JavaScript pour l'expérience complète.</noscript></p>
+    </main>
+  </app-root>
 </body>
 </html>
