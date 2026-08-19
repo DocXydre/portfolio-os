@@ -45,8 +45,8 @@ export class WindowService {
   }
 
   open(opts: OpenOptions): string {
-    // Déduplication : si une fenêtre avec cette clé existe, on la refocalise
-    // et on lui transmet la nouvelle charge utile (ex. explorateur qui navigue).
+    // Déduplication : une fenêtre existante portant cette clé est refocalisée
+    // et reçoit la nouvelle charge utile (ex. navigation dans l'explorateur).
     if (opts.key && this.keyed.has(opts.key)) {
       const id = this.keyed.get(opts.key)!;
       if (this._windows().some((w) => w.id === id)) {
@@ -83,7 +83,7 @@ export class WindowService {
       width,
       height,
       minimized: false,
-      // Sur mobile, on ouvre plein écran : plus lisible et impossible à perdre.
+      // Sur mobile : ouverture en plein écran, plus lisible et non déplaçable hors cadre.
       maximized: mobile,
       z: ++this.topZ,
       data: opts.data,

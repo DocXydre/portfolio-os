@@ -103,12 +103,6 @@ import { Ie } from './apps/ie';
                       pré-rendus en statique pour rester hébergeables sur cette machine.</li>
                   </ul>
 
-                  <h2>Un binôme IA</h2>
-                  <p>
-                    J'ai développé ce portfolio avec l'aide de <b>Claude</b> (l'assistant IA
-                    d'Anthropic) comme binôme de programmation, de l'architecture jusqu'aux finitions.
-                  </p>
-
                   <p class="hint">Astuce : tout n'est pas visible au premier coup d'œil. Fouinez un peu…</p>
                 </div>
               }
@@ -234,7 +228,7 @@ export class App {
 
 
   onDesktopClick(_ev: PointerEvent): void {
-    // Réservé : désélection des icônes du bureau (à venir).
+    // Réservé : désélection des icônes du bureau (non implémenté).
   }
 
   @HostListener('document:keydown.escape')

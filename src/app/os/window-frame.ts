@@ -11,10 +11,11 @@ import { AppWindow } from '../core/models';
 import { WindowService } from '../core/window.service';
 
 /* ------------------------------------------------------------------
-   Châssis XP générique. Ne connaît rien du contenu qu'il affiche :
-   celui-ci est projeté via <ng-content>.
-   Drag & resize en pointer events (compatibles tactile), déplacement
-   en transform pendant le geste, commit dans le signal au relâchement.
+   Châssis de fenêtre générique, indépendant de son contenu (projeté
+   via <ng-content>).
+   Déplacement et redimensionnement en pointer events (compatibles
+   tactile) : translation CSS pendant le geste, écriture dans le signal
+   au relâchement.
    ------------------------------------------------------------------ */
 
 @Component({
@@ -79,7 +80,7 @@ import { WindowService } from '../core/window.service';
       height: calc(100dvh - var(--taskbar-h)) !important;
     }
 
-    /* On surcharge la barre de titre XP.css avec nos tokens de marque. */
+    /* Surcharge de la barre de titre XP.css avec les tokens de marque. */
     .title-bar {
       background: var(--title-grad);
       touch-action: none;
@@ -145,7 +146,7 @@ export class WindowFrame {
     el.addEventListener('pointerup', this.onDragEnd);
   }
 
-  // Pendant le geste : on translate le nœud sans passer par le signal (0 re-render).
+  // Pendant le geste : translation du nœud sans passer par le signal (aucun re-render).
   private onDragMove = (ev: PointerEvent): void => {
     if (!this.drag || ev.pointerId !== this.drag.pointerId) return;
     const dx = ev.clientX - this.drag.startX;
@@ -153,7 +154,7 @@ export class WindowFrame {
     this.frame().nativeElement.style.transform = `translate3d(${dx}px, ${dy}px, 0)`;
   };
 
-  // Au relâchement : on commit la position finale dans l'état, puis on nettoie.
+  // Au relâchement : écriture de la position finale dans l'état, puis nettoyage des écouteurs.
   private onDragEnd = (ev: PointerEvent): void => {
     if (!this.drag || ev.pointerId !== this.drag.pointerId) return;
     const dx = ev.clientX - this.drag.startX;

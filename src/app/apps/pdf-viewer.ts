@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 /* Affiche un PDF (le CV) dans la fenêtre, avec un lien de téléchargement.
-   Le PDF est un asset same-origin ; on marque l'URL comme sûre pour l'iframe. */
+   Le PDF est un asset same-origin ; l'URL est marquée comme sûre pour l'iframe. */
 
 @Component({
   selector: 'app-pdf-viewer',

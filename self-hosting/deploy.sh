@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Déploie le portfolio sur le serveur auto-hébergé (Atom sous Debian).
-# À lancer depuis ta machine (Mac), PAS sur l'Atom : la compilation reste ici.
 #
 #   ./self-hosting/deploy.sh thomas@192.168.1.50
 #

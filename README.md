@@ -51,11 +51,6 @@ Ce site ne tourne pas chez un hébergeur classique : je l'héberge **moi-même**
 > Les workflows sont dans `.github/workflows/` (`deploy.yml` pour GitHub Pages,
 > `deploy-selfhost.yml` pour le serveur via Tailscale).
 
-## Un binôme IA
-
-J'ai développé ce portfolio avec l'aide de **Claude** (l'assistant IA d'Anthropic) comme
-binôme de programmation, de l'architecture jusqu'aux finitions.
-
 ---
 
 ## Démarrer

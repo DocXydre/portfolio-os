@@ -78,7 +78,7 @@ export class Screensaver implements OnInit, OnDestroy {
   };
 
   constructor() {
-    // Dès que le canvas apparaît (activation), on lance l'animation.
+    // Démarrage de l'animation dès l'apparition du canvas (activation).
     effect(() => {
       const el = this.canvas()?.nativeElement;
       if (el) this.zone.runOutsideAngular(() => this.start(el));

@@ -13,8 +13,8 @@ interface Photo {
   caption: string;
 }
 
-// Galerie générée : dépose une photo dans public/photos/ nommée photo-N.jpg
-// et ajuste PHOTO_COUNT. Rien d'autre à toucher.
+// Galerie construite à partir de public/photos/ (fichiers photo-N.jpg).
+// Le nombre d'images est fixé par PHOTO_COUNT.
 const PHOTO_COUNT = 34;
 const PHOTOS: Photo[] = Array.from({ length: PHOTO_COUNT }, (_, i) => ({
   id: `ph-${i + 1}`,
@@ -44,7 +44,7 @@ const projectFile = (id: string, name: string, scope: string): FsFile => ({
   projectId: id,
 });
 
-/** Le CV, désormais posé sur le bureau (voir desktop.ts). */
+/** Fichier CV, référencé depuis le bureau (voir desktop.ts). */
 export const CV_FILE: FsFile = {
   kind: 'file',
   id: 'cv',

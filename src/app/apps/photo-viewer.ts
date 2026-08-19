@@ -71,7 +71,7 @@ export class PhotoViewer implements OnInit, OnDestroy {
   private downX: number | null = null;
 
   constructor() {
-    // Se (re)positionne quand on ouvre une nouvelle image, même viewer déjà ouvert.
+    // Repositionnement à l'ouverture d'une nouvelle image, même fenêtre déjà ouverte.
     effect(() => {
       const s = this.startIndex();
       untracked(() => this._i.set(s));

@@ -112,7 +112,7 @@ export class StartMenu {
     this.wm.open({ type: 'about', title: 'À propos du portfolio', icon: 'help', width: 560, height: 540, key: 'about' });
     this.close.emit();
   }
-  /** Fenêtre "cachée" sur ma personne, ouverte depuis le bandeau profil. */
+  /** Fenêtre de profil personnel, ouverte depuis le bandeau utilisateur. */
   me(): void {
     this.wm.open({ type: 'me', title: 'À propos de moi', icon: 'user', width: 740, height: 560, key: 'me' });
     this.close.emit();

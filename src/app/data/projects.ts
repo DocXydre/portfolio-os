@@ -1,10 +1,11 @@
 import { Folder, Project } from '../core/models';
 
 /* ------------------------------------------------------------------
-   LE fichier à éditer pour faire évoluer le contenu du portfolio.
-   Ajouter un projet = ajouter un objet ici. Aucune ligne d'UI à toucher.
-   Pour ajouter des captures : déposer l'image dans public/screenshots/
-   et référencer '/screenshots/mon-image.webp' dans images[].
+   Contenu du portfolio : dossiers et projets.
+   Chaque projet est un objet du tableau PROJECTS ; l'interface est
+   générée automatiquement à partir de ces données. Les captures
+   résident dans public/screenshots/ et sont référencées par leur
+   chemin dans le champ images[].
    ------------------------------------------------------------------ */
 
 export const FOLDERS: Folder[] = [

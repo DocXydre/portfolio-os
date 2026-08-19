@@ -88,7 +88,7 @@ export interface Project {
   images: string[];
   /** Démo en ligne, si elle existe. */
   link?: string;
-  /** Repo public, si il existe. */
+  /** Repo public, s'il existe. */
   repo?: string;
   /** Lien vers la maquette Figma, si elle existe. */
   figma?: string;

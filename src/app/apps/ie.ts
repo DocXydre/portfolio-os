@@ -9,10 +9,11 @@ import {
 } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
-/* Internet Explorer d'époque (décor Windows XP) + une iframe qui charge le
-   vrai site. Les projets web hébergés s'affichent en live dans l'OS, sans
-   qu'on touche à leur code. Le navigateur a sa propre page d'accueil qui
-   propose les deux sites, et gère une vraie navigation (précédent / suivant). */
+/* Internet Explorer d'époque (décor Windows XP) et iframe chargeant le
+   site réel. Les projets web hébergés s'affichent en direct dans l'OS,
+   sans modification de leur code. Le navigateur dispose d'une page
+   d'accueil listant les deux sites et gère une navigation complète
+   (précédent / suivant). */
 
 interface Bookmark {
   label: string;
@@ -89,7 +90,7 @@ const SITES: Bookmark[] = [
       <!-- Contenu -->
       <div class="viewport">
         @if (isHome()) {
-          <!-- Page de démarrage : vue dossier XP, même DA que le Poste de travail -->
+          <!-- Page de démarrage : vue dossier XP, même style que le Poste de travail -->
           <div class="startpage">
             <aside class="hp-pane">
               <div class="panel">
@@ -195,7 +196,7 @@ const SITES: Bookmark[] = [
     .viewport iframe { width: 100%; height: 100%; border: none; display: block; }
     .loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #555; background: #fff; z-index: 1; }
 
-    /* Page de démarrage — même DA que le Poste de travail (explorateur XP) */
+    /* Page de démarrage — même style que le Poste de travail (explorateur XP) */
     .startpage { display: flex; height: 100%; overflow: hidden; background: #fff; }
 
     .hp-pane {
@@ -242,7 +243,7 @@ const SITES: Bookmark[] = [
       .tbico { width: 14px; height: 14px; }
       .address { padding: 2px 6px; }
       .address .go { padding: 1px 7px; }
-      .address .links { display: none; }   /* décoratif : on gagne de la place */
+      .address .links { display: none; }   /* décoratif : masqué pour gagner de la place */
     }
   `],
 })

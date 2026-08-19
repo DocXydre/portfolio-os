@@ -22,7 +22,7 @@ const BIOS_LINES = [
   'Award Modular BIOS v6.0  —  OS-WINDOWS-TM',
   '',
   'Main Processor  : Développeur Front-End @ 3.9 GHz',
-  'Memory Testing  : 65536K  OK',
+  'Memory Testing  : 66736K  OK',
   '',
   'Detecting drives ...',
   '  Primary Master   : /dev/projets',
