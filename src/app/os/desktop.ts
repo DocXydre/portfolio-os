@@ -12,39 +12,39 @@ import { FOLDERS } from '../data/projects';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="icons">
-      <button class="icon" (dblclick)="openComputer()">
+      <button class="icon" (click)="coarse && openComputer()" (dblclick)="openComputer()">
         <img class="glyph" src="icons/computer.png" alt="" />
         <span class="cap">Poste de travail</span>
       </button>
 
       @for (f of folders; track f.id) {
-        <button class="icon" (dblclick)="openFolder(f.id)">
+        <button class="icon" (click)="coarse && openFolder(f.id)" (dblclick)="openFolder(f.id)">
           <img class="glyph" src="icons/folder.png" alt="" />
           <span class="cap">{{ f.name }}</span>
         </button>
       }
 
-      <button class="icon" (dblclick)="openImages()">
+      <button class="icon" (click)="coarse && openImages()" (dblclick)="openImages()">
         <img class="glyph" src="icons/folder-images.png" alt="" />
         <span class="cap">Mes images</span>
       </button>
 
-      <button class="icon" (dblclick)="openIe()">
+      <button class="icon" (click)="coarse && openIe()" (dblclick)="openIe()">
         <img class="glyph" src="icons/ie.png" alt="" />
         <span class="cap">Internet Explorer</span>
       </button>
 
-      <button class="icon" (dblclick)="openCv()">
+      <button class="icon" (click)="coarse && openCv()" (dblclick)="openCv()">
         <img class="glyph" src="icons/pdf.png" alt="" />
         <span class="cap">CV.pdf</span>
       </button>
 
-      <button class="icon" (dblclick)="openMe()">
+      <button class="icon" (click)="coarse && openMe()" (dblclick)="openMe()">
         <img class="glyph" src="icons/about.png" alt="" />
         <span class="cap">À propos de moi</span>
       </button>
 
-      <button class="icon" (dblclick)="openAbout()">
+      <button class="icon" (click)="coarse && openAbout()" (dblclick)="openAbout()">
         <img class="glyph" src="icons/help.png" alt="" />
         <span class="cap">À propos du portfolio</span>
       </button>
@@ -80,11 +80,30 @@ import { FOLDERS } from '../data/projects';
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95);
       word-break: break-word;
     }
+
+    /* Mobile : grille d'icônes centrée sur toute la largeur. */
+    @media (max-width: 640px) {
+      .icons {
+        left: 0; right: 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+        align-content: start;
+        max-height: none;
+        gap: 12px 4px;
+        padding: 10px 6px 0;
+      }
+      .icon { width: 100%; max-width: 110px; }
+    }
   `],
 })
 export class Desktop {
   private readonly wm = inject(WindowService);
   protected readonly folders = FOLDERS;
+
+  /** Écran tactile : ouverture au simple tap (au lieu du double-clic souris). */
+  protected readonly coarse =
+    typeof matchMedia !== 'undefined' && matchMedia('(pointer: coarse)').matches;
 
   private openExplorer(nodeId: string, title: string, icon: string): void {
     this.wm.open({
