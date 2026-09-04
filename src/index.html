@@ -31,6 +31,10 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
   <meta name="theme-color" content="#245edb" />
 
+  <!-- Fond noir dès le premier paint : enchaîne proprement sur l'écran de
+       démarrage, sans flash blanc pendant le chargement de l'app. -->
+  <style>html, body { margin: 0; background: #000; }</style>
+
   <!-- Données structurées  -->
   <script type="application/ld+json">
   {
@@ -52,10 +56,10 @@
 </head>
 <body>
   <app-root>
-    <!-- Contenu de repli visible avant le chargement de l'app Angular.
-         Il est remplacé par le bureau une fois le JavaScript exécuté, mais
-         reste lu par les moteurs de recherche et les aperçus sans JS (SEO). -->
-    <main style="max-width:720px;margin:0 auto;padding:32px 20px;font-family:Tahoma,Arial,sans-serif;color:#1a1a1a;line-height:1.6">
+    <!-- Contenu de repli pour le référencement : invisible à l'écran (pour ne
+         pas « flasher » avant le démarrage de l'app), mais présent dans le HTML
+         et lu par les moteurs de recherche et les aperçus sans JavaScript. -->
+    <main style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">
       <h1>Thomas Mathis — Développeur polyvalent en recherche d'alternance</h1>
       <p>Étudiant en <strong>MIAGE</strong> à l'Université de Lorraine et développeur polyvalent,
         je cherche une <strong>alternance</strong> où coder et participer à la conduite de projet.
