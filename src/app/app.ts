@@ -103,6 +103,11 @@ import { Ie } from './apps/ie';
                       pré-rendus en statique pour rester hébergeables sur cette machine.</li>
                   </ul>
 
+                  <figure class="doc-photo">
+                    <img src="baie-serveur.webp" alt="La baie de brassage qui héberge le site" loading="lazy" />
+                    <figcaption>Ma baie de brassage : le serveur qui héberge ce site, avec le switch et le brassage réseau.</figcaption>
+                  </figure>
+
                   <p class="hint">Astuce : tout n'est pas visible au premier coup d'œil. Fouinez un peu…</p>
                 </div>
               }
@@ -193,6 +198,16 @@ import { Ie } from './apps/ie';
     .about.doc code {
       font-family: Consolas, "Courier New", monospace; font-size: 12px;
       background: #eef1f7; border: 1px solid #dbe0ea; border-radius: 3px; padding: 0 4px;
+    }
+    .about.doc .doc-photo { margin: 10px 0 6px; }
+    .about.doc .doc-photo img {
+      display: block; width: 100%; max-width: 300px;
+      border-radius: 8px; border: 1px solid #b9c6de;
+      box-shadow: 0 3px 12px rgba(20, 40, 80, 0.22);
+    }
+    .about.doc figcaption {
+      margin-top: 5px; max-width: 300px;
+      font-size: 11px; font-style: italic; color: #667;
     }
 
     .me-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
