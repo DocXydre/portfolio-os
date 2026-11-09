@@ -94,4 +94,12 @@ export interface Project {
   figma?: string;
   /** URL du projet en live, à ouvrir dans la fenêtre Internet Explorer. */
   demoUrl?: string;
+  /** Sous-titre affiché sous le nom, dans la fiche. */
+  subtitle?: string;
+  /** Statut du projet (ex. « En cours »), affiché dans les détails. */
+  status?: string;
+  /** Dépôt de présentation (code privé) : lien « Présentation du projet ». */
+  presentation?: string;
+  /** Captures d'écran d'iPhone (portrait) : affichées côte à côte. */
+  phoneShots?: boolean;
 }

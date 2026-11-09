@@ -7,6 +7,8 @@ import { projectById } from '../data/projects';
    métadonnées à gauche, contenu à droite. Images et lien sont affichés
    seulement s'ils existent — la fiche reste complète sans eux. */
 
+interface Block { type: 'h' | 'p' | 'ul'; text?: string; items?: string[]; }
+
 @Component({
   selector: 'app-project-viewer',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -19,17 +21,19 @@ import { projectById } from '../data/projects';
             <dt>Contexte</dt><dd>{{ p.context }}</dd>
             <dt>Rôle</dt><dd>{{ p.role }}</dd>
             <dt>Année</dt><dd>{{ p.year }}</dd>
+            @if (p.status) { <dt>Statut</dt><dd>{{ p.status }}</dd> }
           </dl>
           <div class="meta-head">Stack technique</div>
           <ul class="chips">
             @for (t of p.stack; track t) { <li>{{ t }}</li> }
           </ul>
 
-          @if (p.link || p.repo || p.figma) {
+          @if (p.link || p.repo || p.figma || p.presentation) {
             <div class="meta-head">Liens</div>
             <div class="links">
               @if (p.link) { <a [href]="p.link" target="_blank" rel="noopener">Voir la démo →</a> }
               @if (p.repo) { <a [href]="p.repo" target="_blank" rel="noopener">Code source →</a> }
+              @if (p.presentation) { <a [href]="p.presentation" target="_blank" rel="noopener">Présentation du projet →</a> }
               @if (p.figma) { <a [href]="p.figma" target="_blank" rel="noopener">Maquette Figma →</a> }
             </div>
           } @else {
@@ -39,6 +43,7 @@ import { projectById } from '../data/projects';
 
         <section class="content">
           <h1>{{ p.name }}</h1>
+          @if (p.subtitle) { <p class="subtitle">{{ p.subtitle }}</p> }
 
           @if (p.demoUrl) {
             <button class="ie-btn" (click)="openDemo(p)">
@@ -46,13 +51,17 @@ import { projectById } from '../data/projects';
             </button>
           }
 
-          @for (para of p.description; track $index) {
-            <p>{{ para }}</p>
+          @for (b of blocks(); track $index) {
+            @switch (b.type) {
+              @case ('h') { <h2>{{ b.text }}</h2> }
+              @case ('ul') { <ul>@for (li of b.items; track $index) { <li>{{ li }}</li> }</ul> }
+              @default { <p>{{ b.text }}</p> }
+            }
           }
 
           @if (p.images.length) {
             <p class="shots-hint">Cliquez sur une image pour l'agrandir</p>
-            <div class="shots">
+            <div class="shots" [class.phone]="p.phoneShots">
               @for (src of p.images; track src; let i = $index) {
                 <img [src]="src" [alt]="p.name" loading="lazy" (click)="openImage(p, i)" />
               }
@@ -94,6 +103,10 @@ import { projectById } from '../data/projects';
     .content { flex: 1; padding: 18px 22px; overflow: auto; line-height: 1.6; color: #1a1a1a; }
     .content h1 { font-size: 17px; color: var(--accent-deep); margin: 0 0 12px; }
     .content p { margin: 0 0 12px; }
+    .content .subtitle { margin: -6px 0 14px; color: #556; font-weight: bold; }
+    .content h2 { font-size: 14px; color: var(--accent-deep); margin: 16px 0 6px; }
+    .content ul { margin: 0 0 12px; padding-left: 20px; }
+    .content li { margin: 0 0 4px; }
 
     .ie-btn {
       display: inline-flex; align-items: center; gap: 8px;
@@ -110,6 +123,10 @@ import { projectById } from '../data/projects';
       max-width: 100%; border: 1px solid #9db0cf; border-radius: 3px;
       cursor: zoom-in; transition: box-shadow 0.15s, transform 0.15s;
     }
+    /* Captures d'iPhone (portrait) : côte à côte, sinon une par ligne. */
+    .shots.phone { flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
+    .shots.phone img { width: calc(50% - 5px); max-width: 220px; }
+    .shots.phone img:first-child { width: 100%; max-width: 100%; }
     .shots img:hover { box-shadow: 0 2px 10px rgba(49,106,197,0.4); }
 
     .missing { padding: 20px; }
@@ -119,6 +136,20 @@ export class ProjectViewer {
   readonly projectId = input.required<string>();
   private readonly wm = inject(WindowService);
   protected readonly project = computed<Project | undefined>(() => projectById(this.projectId()));
+
+  /** Regroupe la description : "## " = titre, "- " = liste, sinon paragraphe. */
+  protected readonly blocks = computed<Block[]>(() => {
+    const out: Block[] = [];
+    for (const line of this.project()?.description ?? []) {
+      if (line.startsWith('## ')) out.push({ type: 'h', text: line.slice(3) });
+      else if (line.startsWith('- ')) {
+        const last = out[out.length - 1];
+        if (last?.type === 'ul') last.items!.push(line.slice(2));
+        else out.push({ type: 'ul', items: [line.slice(2)] });
+      } else out.push({ type: 'p', text: line });
+    }
+    return out;
+  });
 
   openImage(p: Project, index: number): void {
     this.wm.open({

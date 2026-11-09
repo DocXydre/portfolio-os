@@ -116,7 +116,7 @@ import { Ie } from './apps/ie';
                   <div class="me-head">
                     <div>
                       <h1>Thomas Mathis</h1>
-                      <p class="role">Développeur polyvalent · étudiant MIAGE · en recherche d'alternance</p>
+                      <p class="role">Étudiant en Master 1 MIAGE · en recherche de stage à partir de juin 2027</p>
                     </div>
                   </div>
 
@@ -127,9 +127,10 @@ import { Ie } from './apps/ie';
 
                     <div class="me-text">
                       <p>
-                        Bonjour, et bienvenue sur mon profil ! Étudiant en MIAGE à l'Université de
-                        Lorraine et développeur polyvalent, je suis à la recherche d'une <b>alternance</b>
-                        où je pourrai autant coder que participer à la conduite d'un projet.
+                        Bonjour, et bienvenue sur mon profil ! Je suis en Master 1 MIAGE à l'IDMC
+                        (Université de Lorraine, diplôme prévu en 2028), après une Licence MIASHS
+                        parcours MIAGE (2026). Je cherche un <b>stage à partir de juin 2027</b>, en
+                        gestion et conception de projet, idéalement autour des nouveaux outils IA.
                       </p>
                       <p>
                         Je suis à l'aise aussi bien sur le front (Angular, intégration soignée) que côté
